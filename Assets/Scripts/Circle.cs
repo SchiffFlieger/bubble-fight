@@ -5,13 +5,11 @@ using UnityEngine;
 public class Circle : MonoBehaviour {
 
 	public int hits;
-
-	private TextMesh text;
+	public NumberDisplay display;
 
 	void Start() 
 	{
-		this.text = this.transform.Find("Number").GetComponent<TextMesh>();
-		UpdateCircle();	
+		display.SetNumber(hits);
 	}
 
 	void OnCollisionEnter2D(Collision2D collision)
@@ -28,7 +26,8 @@ public class Circle : MonoBehaviour {
 		if (this.hits <= 0)
 		{
 			GameObject.Destroy(this.gameObject);
+			GameObject.Destroy(this.display.gameObject);
 		}
-		this.text.text = "" + this.hits;
+		this.display.SetNumber(this.hits);
 	}
 }
