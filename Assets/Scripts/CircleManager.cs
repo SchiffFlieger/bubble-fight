@@ -39,8 +39,10 @@ public class CircleManager : MonoBehaviour {
 
 	void UpdateIdle() 
 	{
-		// wait for mouse click
-		// change state to ring spawning
+		if (Input.GetMouseButtonDown(0)) 
+		{
+			this.state = State.RingSpawning;
+		}
 	}
 
 	void UpdateRingSpawning()
