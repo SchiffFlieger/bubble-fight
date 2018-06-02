@@ -9,13 +9,27 @@ public class CircleManager : MonoBehaviour {
 	}
 
 	public int shootsTillNextRow;
+	public int spawnTimerInFrames;
+	public int ringsToShoot;
+	public int speed;
+	
+	public Ring ring;
+	public Transform prefab;
 
 	private State state;
 	private int shootsSinceLastRow;
+	private int spawnTimer;
+	private int ringsShot;
+	private Vector3 initialPosition;
+	private Vector2 direction;
 
 	void Start () {
 		this.state = State.Idle;		
 		this.shootsSinceLastRow = 0;
+		this.spawnTimer = 0;
+		this.ringsShot = 0;
+
+		this.initialPosition = ring.transform.position;
 	}
 	
 	void Update () {
@@ -34,6 +48,7 @@ public class CircleManager : MonoBehaviour {
 				break;
 			default:
 				print("something strange happened");
+				break;
 		}
 	}
 
@@ -41,14 +56,30 @@ public class CircleManager : MonoBehaviour {
 	{
 		if (Input.GetMouseButtonDown(0)) 
 		{
+			ring.gameObject.SetActive(false);
+            this.direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - this.transform.position;
 			this.state = State.RingSpawning;
 		}
+
+		this.ring.transform.position = this.initialPosition;
 	}
 
 	void UpdateRingSpawning()
 	{
-		// spawn a new ring every xx frames and apply velocity
-		// if all rings are spawned, change state to shooting
+		if (this.spawnTimer >= this.spawnTimerInFrames)
+		{
+			Transform instance = Instantiate(prefab, this.initialPosition, Quaternion.identity);
+            instance.GetComponent<Rigidbody2D>().velocity = direction.normalized * speed;
+			this.ringsShot++;
+
+			this.spawnTimer = 0;
+			if (this.ringsShot >= this.ringsToShoot)
+			{
+				this.state = State.Shooting;
+			}
+		}
+
+		this.spawnTimer++;
 	}
 	
 	void UpdateShooting()
