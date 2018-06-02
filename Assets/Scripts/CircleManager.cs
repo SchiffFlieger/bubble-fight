@@ -116,6 +116,7 @@ public class CircleManager : MonoBehaviour
 			circles.Add(instance);
         }
 
+		this.ringsShot = 0;
         this.shotsSinceLastRow++;
         this.ring.gameObject.SetActive(true);
         this.state = State.Idle;
