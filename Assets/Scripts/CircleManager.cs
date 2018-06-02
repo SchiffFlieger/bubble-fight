@@ -10,33 +10,37 @@ public class CircleManager : MonoBehaviour
         Idle, Spawning, Flying, Refreshing
     }
 
-    public int shootsTillNextRow;
+    public int shotsTillNextRow;
     public int spawnPauseDuration;
     public int ringsToShoot;
     public int speed;
 
     public Ring ring;
-    public Transform prefab;
+    public Transform ringPrefab;
+    public Transform circlePrefab;
 
     private State state;
-    private int shootsSinceLastRow;
+    private int shotsSinceLastRow;
     private int spawnTimer;
     private int ringsShot;
     private Vector3 initialPosition;
     private Vector2 direction;
+	private List<Transform> circles;
 
     void Start()
     {
-        this.state = State.Idle;
-        this.shootsSinceLastRow = 0;
+        this.state = State.Refreshing;
+        this.shotsSinceLastRow = this.shotsTillNextRow;
         this.spawnTimer = this.spawnPauseDuration;
         this.ringsShot = 0;
+		this.circles = new List<Transform>();
 
         this.initialPosition = ring.transform.position;
     }
 
     void Update()
     {
+		print(state.ToString());
         switch (state)
         {
             case State.Idle:
@@ -70,10 +74,10 @@ public class CircleManager : MonoBehaviour
     }
 
     void UpdateSpawning()
-    {		
+    {
         if (this.spawnTimer >= this.spawnPauseDuration)
         {
-            Transform instance = Instantiate(prefab, this.initialPosition, Quaternion.identity);
+            Transform instance = Instantiate(ringPrefab, this.initialPosition, Quaternion.identity);
             instance.GetComponent<Rigidbody2D>().velocity = direction.normalized * speed;
             this.ringsShot++;
 
@@ -89,15 +93,31 @@ public class CircleManager : MonoBehaviour
 
     void UpdateFlying()
     {
-		if (GameObject.FindGameObjectsWithTag("Ring").Length <= 0)
-		{
-			this.state = State.Refreshing;
-		}
+        if (GameObject.FindGameObjectsWithTag("Ring").Length <= 0)
+        {
+            this.state = State.Refreshing;
+        }
     }
 
     void UpdateRefreshing()
     {
-        // spawn new row if necessary
-        // change state to idle
+        if (this.shotsSinceLastRow >= this.shotsTillNextRow)
+        {
+            this.shotsSinceLastRow = 0;
+
+			foreach (Transform circ in this.circles)
+			{
+				if (circ != null)
+				{
+					circ.position = new Vector3(circ.position.x, circ.position.y-1, circ.position.z);
+				}
+			}
+            Transform instance = Instantiate(circlePrefab, new Vector3(-2.5f, 9.5f, -2.0f), Quaternion.identity);
+			circles.Add(instance);
+        }
+
+        this.shotsSinceLastRow++;
+        this.ring.gameObject.SetActive(true);
+        this.state = State.Idle;
     }
 }
