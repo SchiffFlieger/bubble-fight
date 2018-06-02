@@ -112,8 +112,13 @@ public class CircleManager : MonoBehaviour
 					circ.position = new Vector3(circ.position.x, circ.position.y-1, circ.position.z);
 				}
 			}
-            Transform instance = Instantiate(circlePrefab, new Vector3(-2.5f, 9.5f, -2.0f), Quaternion.identity);
-			circles.Add(instance);
+
+			AddCircle(-2.5f);
+			AddCircle(-1.5f);
+			AddCircle(-0.5f);
+			AddCircle(0.5f);
+			AddCircle(1.5f);
+			AddCircle(2.5f);
         }
 
 		this.ringsShot = 0;
@@ -121,4 +126,10 @@ public class CircleManager : MonoBehaviour
         this.ring.gameObject.SetActive(true);
         this.state = State.Idle;
     }
+
+	void AddCircle(float x)
+	{
+        Transform instance = Instantiate(circlePrefab, new Vector3(x, 9.5f, -2.0f), Quaternion.identity);
+		this.circles.Add(instance);
+	}
 }
