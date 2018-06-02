@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Circle : MonoBehaviour {
 
-	public int hits;
+	public int maxHits;
 	public NumberDisplay display;
+
+	private int hits;
 
 	void Start() 
 	{
+		this.hits = Random.Range(1, maxHits);
 		display.SetNumber(hits);
 	}
 
