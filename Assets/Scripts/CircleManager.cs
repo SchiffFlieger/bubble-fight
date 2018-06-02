@@ -66,7 +66,7 @@ public class CircleManager : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             ring.gameObject.SetActive(false);
-            this.direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - this.transform.position;
+            this.direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - this.initialPosition;
             this.state = State.Spawning;
         }
 
