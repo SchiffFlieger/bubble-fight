@@ -59,7 +59,6 @@ public class CircleManager : MonoBehaviour
 
     void UpdateIdle()
     {
-		print("idle");
         if (Input.GetMouseButtonDown(0))
         {
             ring.gameObject.SetActive(false);
@@ -72,7 +71,6 @@ public class CircleManager : MonoBehaviour
 
     void UpdateSpawning()
     {		
-		print("spawning");
         if (this.spawnTimer >= this.spawnPauseDuration)
         {
             Transform instance = Instantiate(prefab, this.initialPosition, Quaternion.identity);
@@ -91,15 +89,14 @@ public class CircleManager : MonoBehaviour
 
     void UpdateFlying()
     {
-		print("flying");	
-        // move rings
-        // check if there are rings left
-        // change state to refreshing if no rings left
+		if (GameObject.FindGameObjectsWithTag("Ring").Length <= 0)
+		{
+			this.state = State.Refreshing;
+		}
     }
 
     void UpdateRefreshing()
     {
-		print("refreshing");
         // spawn new row if necessary
         // change state to idle
     }
