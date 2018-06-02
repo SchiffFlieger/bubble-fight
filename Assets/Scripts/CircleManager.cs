@@ -2,96 +2,105 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CircleManager : MonoBehaviour {
+public class CircleManager : MonoBehaviour
+{
 
-	enum State {
-		Idle, RingSpawning, Shooting, Refreshing
-	}
+    enum State
+    {
+        Idle, Spawning, Flying, Refreshing
+    }
 
-	public int shootsTillNextRow;
-	public int spawnTimerInFrames;
-	public int ringsToShoot;
-	public int speed;
-	
-	public Ring ring;
-	public Transform prefab;
+    public int shootsTillNextRow;
+    public int spawnPauseDuration;
+    public int ringsToShoot;
+    public int speed;
 
-	private State state;
-	private int shootsSinceLastRow;
-	private int spawnTimer;
-	private int ringsShot;
-	private Vector3 initialPosition;
-	private Vector2 direction;
+    public Ring ring;
+    public Transform prefab;
 
-	void Start () {
-		this.state = State.Idle;		
-		this.shootsSinceLastRow = 0;
-		this.spawnTimer = 0;
-		this.ringsShot = 0;
+    private State state;
+    private int shootsSinceLastRow;
+    private int spawnTimer;
+    private int ringsShot;
+    private Vector3 initialPosition;
+    private Vector2 direction;
 
-		this.initialPosition = ring.transform.position;
-	}
-	
-	void Update () {
-		switch(state) {
-			case State.Idle:
-				UpdateIdle();
-				break;
-			case State.RingSpawning:
-				UpdateRingSpawning();
-				break;
-			case State.Shooting:
-				UpdateShooting();
-				break;
-			case State.Refreshing:
-				UpdateRefreshing();
-				break;
-			default:
-				print("something strange happened");
-				break;
-		}
-	}
+    void Start()
+    {
+        this.state = State.Idle;
+        this.shootsSinceLastRow = 0;
+        this.spawnTimer = this.spawnPauseDuration;
+        this.ringsShot = 0;
 
-	void UpdateIdle() 
-	{
-		if (Input.GetMouseButtonDown(0)) 
-		{
-			ring.gameObject.SetActive(false);
+        this.initialPosition = ring.transform.position;
+    }
+
+    void Update()
+    {
+        switch (state)
+        {
+            case State.Idle:
+                UpdateIdle();
+                break;
+            case State.Spawning:
+                UpdateSpawning();
+                break;
+            case State.Flying:
+                UpdateFlying();
+                break;
+            case State.Refreshing:
+                UpdateRefreshing();
+                break;
+            default:
+                Debug.LogError("something strange happened");
+                break;
+        }
+    }
+
+    void UpdateIdle()
+    {
+		print("idle");
+        if (Input.GetMouseButtonDown(0))
+        {
+            ring.gameObject.SetActive(false);
             this.direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - this.transform.position;
-			this.state = State.RingSpawning;
-		}
+            this.state = State.Spawning;
+        }
 
-		this.ring.transform.position = this.initialPosition;
-	}
+        this.ring.transform.position = this.initialPosition;
+    }
 
-	void UpdateRingSpawning()
-	{
-		if (this.spawnTimer >= this.spawnTimerInFrames)
-		{
-			Transform instance = Instantiate(prefab, this.initialPosition, Quaternion.identity);
+    void UpdateSpawning()
+    {		
+		print("spawning");
+        if (this.spawnTimer >= this.spawnPauseDuration)
+        {
+            Transform instance = Instantiate(prefab, this.initialPosition, Quaternion.identity);
             instance.GetComponent<Rigidbody2D>().velocity = direction.normalized * speed;
-			this.ringsShot++;
+            this.ringsShot++;
 
-			this.spawnTimer = 0;
-			if (this.ringsShot >= this.ringsToShoot)
-			{
-				this.state = State.Shooting;
-			}
-		}
+            this.spawnTimer = 0;
+            if (this.ringsShot >= this.ringsToShoot)
+            {
+                this.state = State.Flying;
+            }
+        }
 
-		this.spawnTimer++;
-	}
-	
-	void UpdateShooting()
-	{
-		// move rings
-		// check if there are rings left
-		// change state to refreshing if no rings left
-	}
+        this.spawnTimer++;
+    }
 
-	void UpdateRefreshing()
-	{
-		// spawn new row if necessary
-		// change state to idle
-	}
+    void UpdateFlying()
+    {
+		print("flying");	
+        // move rings
+        // check if there are rings left
+        // change state to refreshing if no rings left
+    }
+
+    void UpdateRefreshing()
+    {
+		print("refreshing");
+        // spawn new row if necessary
+        // change state to idle
+    }
 }

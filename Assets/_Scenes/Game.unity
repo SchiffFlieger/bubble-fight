@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootsTillNextRow: 5
-  spawnTimerInFrames: 30
+  spawnPauseDuration: 12
   ringsToShoot: 5
   speed: 10
   ring: {fileID: 1226862196}
