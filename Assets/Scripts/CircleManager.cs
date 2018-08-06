@@ -129,7 +129,7 @@ public class CircleManager : MonoBehaviour
 
 	void AddCircle(float x)
 	{
-        Transform instance = Instantiate(circlePrefab, new Vector3(x, 9.5f, -2.0f), Quaternion.identity);
+        Transform instance = Instantiate(circlePrefab, new Vector3(x, 8.5f, -2.0f), Quaternion.identity);
 		this.circles.Add(instance);
 	}
 }
