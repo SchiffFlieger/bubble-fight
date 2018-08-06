@@ -195,9 +195,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shotsTillNextRow: 2
-  spawnPauseDuration: 12
+  spawnPauseDuration: 10
   ringsToShoot: 5
-  speed: 15
+  speed: 12
   ring: {fileID: 1226862196}
   ringPrefab: {fileID: 4091940774195092, guid: bdc87691cd559a54d8d26d28eab7f23c, type: 2}
   circlePrefab: {fileID: 4595373094226468, guid: ac7bd4d094f20944b97a4b7ca41f665f,
@@ -513,11 +513,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 8, y: 1}
   m_EdgeRadius: 0
---- !u!1 &1226862191 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1755920815537768, guid: bdc87691cd559a54d8d26d28eab7f23c,
-    type: 2}
-  m_PrefabInternal: {fileID: 647742637}
 --- !u!114 &1226862196 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114443049976652606, guid: bdc87691cd559a54d8d26d28eab7f23c,
@@ -584,7 +579,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e90ddced8f79fdc4cb701444eff85bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ring: {fileID: 1226862191}
+  ring: {fileID: 0}
 --- !u!120 &1686578333
 LineRenderer:
   m_ObjectHideFlags: 0
