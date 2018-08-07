@@ -19,7 +19,7 @@ public class Circle : MonoBehaviour {
 	{
 		if (collision.gameObject.CompareTag("Ring"))
 		{
-			this.hits--;
+			this.hits -= (collision.gameObject.GetComponent<Ring>()).damage;
 			UpdateCircle();
 		}
 	}

@@ -14,12 +14,15 @@ public class CircleManager : MonoBehaviour
     public int spawnPauseDuration;
     public int ringsToShoot;
     public int speed;
-    public float upgradePossibility;
+    public float countUpgradePossibility;
+    public float damageUpgradePossibility;
+    public int ringDamage;
 
-    public Ring ring;
-    public Transform ringPrefab;
+    public Ring staticRing;
+    public Ring ringPrefab;
     public Transform circlePrefab;
     public RingCountUpgrade ringCountUpgradePrefab;
+    public RingDamageUpgrade ringDamageUpgradePrefab;
 
     private State state;
     private int shotsSinceLastRow;
@@ -37,7 +40,7 @@ public class CircleManager : MonoBehaviour
         this.ringsShot = 0;
         this.circles = new List<Transform>();
 
-        this.initialPosition = ring.transform.position;
+        this.initialPosition = staticRing.transform.position;
     }
 
     void Update()
@@ -67,19 +70,20 @@ public class CircleManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            ring.gameObject.SetActive(false);
+            staticRing.gameObject.SetActive(false);
             this.direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - this.initialPosition;
             this.state = State.Spawning;
         }
 
-        this.ring.transform.position = this.initialPosition;
+        this.staticRing.transform.position = this.initialPosition;
     }
 
     void UpdateSpawning()
     {
         if (this.spawnTimer >= this.spawnPauseDuration)
         {
-            Transform instance = Instantiate(ringPrefab, this.initialPosition, Quaternion.identity);
+            Ring instance = Instantiate(ringPrefab, this.initialPosition, Quaternion.identity);
+            instance.damage = this.ringDamage;
             instance.GetComponent<Rigidbody2D>().velocity = direction.normalized * speed;
             this.ringsShot++;
 
@@ -123,14 +127,19 @@ public class CircleManager : MonoBehaviour
             AddCircle(2.5f);
         }
 
-        if (this.upgradePossibility > Random.Range(0.0f, 1.0f))
+        if (this.countUpgradePossibility > Random.Range(0.0f, 1.0f))
         {
-            SpawnUpgrade();
+            SpawnCountUpgrade();
+        }
+
+        if (this.damageUpgradePossibility > Random.Range(0.0f, 1.0f))
+        {
+            SpawnDamageUpgrade();
         }
 
         this.ringsShot = 0;
         this.shotsSinceLastRow++;
-        this.ring.gameObject.SetActive(true);
+        this.staticRing.gameObject.SetActive(true);
         this.state = State.Idle;
     }
 
@@ -140,9 +149,15 @@ public class CircleManager : MonoBehaviour
         this.circles.Add(instance);
     }
 
-    void SpawnUpgrade()
+    void SpawnCountUpgrade()
     {
         RingCountUpgrade instance = Instantiate(ringCountUpgradePrefab, new Vector3(Random.Range(-2.5f, 2.5f), Random.Range(2.0f, 8.0f), -2.0f), Quaternion.identity);
+        instance.circleManager = this;
+    }
+
+    void SpawnDamageUpgrade()
+    {
+        RingDamageUpgrade instance = Instantiate(ringDamageUpgradePrefab, new Vector3(Random.Range(-2.5f, 2.5f), Random.Range(2.0f, 8.0f), -2.0f), Quaternion.identity);
         instance.circleManager = this;
     }
 }

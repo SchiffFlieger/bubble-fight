@@ -410,12 +410,17 @@ MonoBehaviour:
   spawnPauseDuration: 10
   ringsToShoot: 1
   speed: 12
-  upgradePossibility: 0.2
-  ring: {fileID: 1226862196}
-  ringPrefab: {fileID: 4091940774195092, guid: bdc87691cd559a54d8d26d28eab7f23c, type: 2}
+  countUpgradePossibility: 0.2
+  damageUpgradePossibility: 0.1
+  ringDamage: 1
+  staticRing: {fileID: 1226862196}
+  ringPrefab: {fileID: 114443049976652606, guid: bdc87691cd559a54d8d26d28eab7f23c,
+    type: 2}
   circlePrefab: {fileID: 4595373094226468, guid: ac7bd4d094f20944b97a4b7ca41f665f,
     type: 2}
   ringCountUpgradePrefab: {fileID: 114762244198059738, guid: f9437c1d461f52f438ca048304c913b6,
+    type: 2}
+  ringDamageUpgradePrefab: {fileID: 114978393835060450, guid: 4ea0d6abd3db7544f9606ce3b487ed5e,
     type: 2}
 --- !u!4 &232799427
 Transform:

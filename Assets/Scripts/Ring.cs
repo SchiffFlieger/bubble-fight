@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class Ring : MonoBehaviour
 {
-    void OnDestroy() 
-    {
-
-    }
+    public int damage;
 
     void OnCollisionEnter2D(Collision2D collision)
     {
