@@ -14,10 +14,12 @@ public class CircleManager : MonoBehaviour
     public int spawnPauseDuration;
     public int ringsToShoot;
     public int speed;
+    public float upgradePossibility;
 
     public Ring ring;
     public Transform ringPrefab;
     public Transform circlePrefab;
+    public RingCountUpgrade ringCountUpgradePrefab;
 
     private State state;
     private int shotsSinceLastRow;
@@ -25,7 +27,7 @@ public class CircleManager : MonoBehaviour
     private int ringsShot;
     private Vector3 initialPosition;
     private Vector2 direction;
-	private List<Transform> circles;
+    private List<Transform> circles;
 
     void Start()
     {
@@ -33,14 +35,14 @@ public class CircleManager : MonoBehaviour
         this.shotsSinceLastRow = this.shotsTillNextRow;
         this.spawnTimer = this.spawnPauseDuration;
         this.ringsShot = 0;
-		this.circles = new List<Transform>();
+        this.circles = new List<Transform>();
 
         this.initialPosition = ring.transform.position;
     }
 
     void Update()
     {
-		print(state.ToString());
+        print(state.ToString());
         switch (state)
         {
             case State.Idle:
@@ -105,31 +107,42 @@ public class CircleManager : MonoBehaviour
         {
             this.shotsSinceLastRow = 0;
 
-			foreach (Transform circ in this.circles)
-			{
-				if (circ != null)
-				{
-					circ.position = new Vector3(circ.position.x, circ.position.y-1, circ.position.z);
-				}
-			}
+            foreach (Transform circ in this.circles)
+            {
+                if (circ != null)
+                {
+                    circ.position = new Vector3(circ.position.x, circ.position.y - 1, circ.position.z);
+                }
+            }
 
-			AddCircle(-2.5f);
-			AddCircle(-1.5f);
-			AddCircle(-0.5f);
-			AddCircle(0.5f);
-			AddCircle(1.5f);
-			AddCircle(2.5f);
+            AddCircle(-2.5f);
+            AddCircle(-1.5f);
+            AddCircle(-0.5f);
+            AddCircle(0.5f);
+            AddCircle(1.5f);
+            AddCircle(2.5f);
         }
 
-		this.ringsShot = 0;
+        if (this.upgradePossibility > Random.Range(0.0f, 1.0f))
+        {
+            SpawnUpgrade();
+        }
+
+        this.ringsShot = 0;
         this.shotsSinceLastRow++;
         this.ring.gameObject.SetActive(true);
         this.state = State.Idle;
     }
 
-	void AddCircle(float x)
-	{
+    void AddCircle(float x)
+    {
         Transform instance = Instantiate(circlePrefab, new Vector3(x, 8.5f, -2.0f), Quaternion.identity);
-		this.circles.Add(instance);
-	}
+        this.circles.Add(instance);
+    }
+
+    void SpawnUpgrade()
+    {
+        RingCountUpgrade instance = Instantiate(ringCountUpgradePrefab, new Vector3(Random.Range(-2.5f, 2.5f), Random.Range(2.0f, 8.0f), -2.0f), Quaternion.identity);
+        instance.circleManager = this;
+    }
 }
