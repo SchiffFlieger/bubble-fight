@@ -32,7 +32,6 @@ public class CircleManager : MonoBehaviour
     private Vector2 direction;
     private List<Transform> circles;
     private LevelManager levelManager;
-    private ScoreManager scoreManager;
 
     void Start()
     {
@@ -44,7 +43,6 @@ public class CircleManager : MonoBehaviour
 
         this.initialPosition = staticRing.transform.position;
         this.levelManager = GameObject.FindObjectOfType<LevelManager>();
-        this.scoreManager = GameObject.FindObjectOfType<ScoreManager>();
     }
 
     void Update()
@@ -78,8 +76,6 @@ public class CircleManager : MonoBehaviour
             this.direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - this.initialPosition;
             this.state = State.Spawning;
         }
-
-        this.staticRing.transform.position = this.initialPosition;
     }
 
     void UpdateSpawning()
