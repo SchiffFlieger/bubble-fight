@@ -8,10 +8,13 @@ public class Circle : MonoBehaviour {
 	public NumberDisplay display;
 
 	private int hits;
+    private ScoreManager scoreManager;
 
 	void Start() 
 	{
 		this.hits = Random.Range(1, maxHits);
+		
+        this.scoreManager = GameObject.FindObjectOfType<ScoreManager>();
 		display.SetNumber(hits);
 	}
 
@@ -19,7 +22,7 @@ public class Circle : MonoBehaviour {
 	{
 		if (collision.gameObject.CompareTag("Ring"))
 		{
-			this.hits -= (collision.gameObject.GetComponent<Ring>()).damage;
+			this.hits -= collision.gameObject.GetComponent<Ring>().damage;
 			UpdateCircle();
 		}
 	}
@@ -28,8 +31,11 @@ public class Circle : MonoBehaviour {
 	{
 		if (this.hits <= 0)
 		{
+			scoreManager.CircleDestroyed();
 			GameObject.Destroy(this.gameObject);
 			GameObject.Destroy(this.display.gameObject);
+		} else {
+			scoreManager.CircleHit();
 		}
 		this.display.SetNumber(this.hits);
 	}

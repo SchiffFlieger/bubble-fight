@@ -10,18 +10,17 @@ public class HudManager : MonoBehaviour {
 	public Text scoreText;
 
 	private CircleManager circleManager;
-	private int dummyScore;
+	private ScoreManager scoreManager;
 
 
 	void Start () {
-		this.circleManager = GameObject.FindObjectOfType<CircleManager>();		
-		this.dummyScore = 0;
+		this.circleManager = GameObject.FindObjectOfType<CircleManager>();
+        this.scoreManager = GameObject.FindObjectOfType<ScoreManager>();		
 	}
 	
 	void Update () {
-		dummyScore++;
 		this.ringCountText.text = "Rings: " + circleManager.ringsToShoot.ToString();
 		this.ringDamageText.text = "Damage: " + circleManager.ringDamage.ToString();
-		this.scoreText.text = "Score: " + dummyScore.ToString();
+		this.scoreText.text = "Score: " + scoreManager.GetScore().ToString();
 	}
 }

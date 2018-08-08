@@ -32,6 +32,7 @@ public class CircleManager : MonoBehaviour
     private Vector2 direction;
     private List<Transform> circles;
     private LevelManager levelManager;
+    private ScoreManager scoreManager;
 
     void Start()
     {
@@ -43,6 +44,7 @@ public class CircleManager : MonoBehaviour
 
         this.initialPosition = staticRing.transform.position;
         this.levelManager = GameObject.FindObjectOfType<LevelManager>();
+        this.scoreManager = GameObject.FindObjectOfType<ScoreManager>();
     }
 
     void Update()
