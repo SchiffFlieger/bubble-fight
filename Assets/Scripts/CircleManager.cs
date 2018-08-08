@@ -31,6 +31,7 @@ public class CircleManager : MonoBehaviour
     private Vector3 initialPosition;
     private Vector2 direction;
     private List<Transform> circles;
+    private LevelManager levelManager;
 
     void Start()
     {
@@ -41,6 +42,7 @@ public class CircleManager : MonoBehaviour
         this.circles = new List<Transform>();
 
         this.initialPosition = staticRing.transform.position;
+        this.levelManager = GameObject.FindObjectOfType<LevelManager>();
     }
 
     void Update()
@@ -115,6 +117,11 @@ public class CircleManager : MonoBehaviour
             {
                 if (circ != null)
                 {
+                    if (circ.position.y < 2)
+                    {
+                        this.levelManager.LoadLevel("GameOver");
+                        return;
+                    }
                     circ.position = new Vector3(circ.position.x, circ.position.y - 1, circ.position.z);
                 }
             }
