@@ -80,6 +80,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   circleManager: {fileID: 0}
   rotationSpeed: 2
+  despawnAfterRounds: 2
 --- !u!212 &212126019385556928
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -14,15 +14,11 @@ public class CircleManager : MonoBehaviour
     public int spawnPauseDuration;
     public int ringsToShoot;
     public int speed;
-    public float countUpgradePossibility;
-    public float damageUpgradePossibility;
     public int ringDamage;
 
     public Ring staticRing;
     public Ring ringPrefab;
     public Transform circlePrefab;
-    public RingCountUpgrade ringCountUpgradePrefab;
-    public RingDamageUpgrade ringDamageUpgradePrefab;
 
     private State state;
     private int shotsSinceLastRow;
@@ -32,6 +28,7 @@ public class CircleManager : MonoBehaviour
     private Vector2 direction;
     private List<Transform> circles;
     private LevelManager levelManager;
+    private UpgradeManager upgradeManager;
 
     void Start()
     {
@@ -43,6 +40,7 @@ public class CircleManager : MonoBehaviour
 
         this.initialPosition = staticRing.transform.position;
         this.levelManager = GameObject.FindObjectOfType<LevelManager>();
+        this.upgradeManager = GameObject.FindObjectOfType<UpgradeManager>();
     }
 
     void Update()
@@ -132,15 +130,7 @@ public class CircleManager : MonoBehaviour
             AddCircle(2.5f);
         }
 
-        if (this.countUpgradePossibility > Random.Range(0.0f, 1.0f))
-        {
-            SpawnCountUpgrade();
-        }
-
-        if (this.damageUpgradePossibility > Random.Range(0.0f, 1.0f))
-        {
-            SpawnDamageUpgrade();
-        }
+        this.upgradeManager.UpdateRefreshState();
 
         this.ringsShot = 0;
         this.shotsSinceLastRow++;
@@ -154,15 +144,4 @@ public class CircleManager : MonoBehaviour
         this.circles.Add(instance);
     }
 
-    void SpawnCountUpgrade()
-    {
-        RingCountUpgrade instance = Instantiate(ringCountUpgradePrefab, new Vector3(Random.Range(-2.5f, 2.5f), Random.Range(2.0f, 8.0f), -2.0f), Quaternion.identity);
-        instance.circleManager = this;
-    }
-
-    void SpawnDamageUpgrade()
-    {
-        RingDamageUpgrade instance = Instantiate(ringDamageUpgradePrefab, new Vector3(Random.Range(-2.5f, 2.5f), Random.Range(2.0f, 8.0f), -2.0f), Quaternion.identity);
-        instance.circleManager = this;
-    }
 }

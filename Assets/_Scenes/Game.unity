@@ -380,6 +380,52 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 10}
   m_EdgeRadius: 0
+--- !u!1 &217721561
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 217721563}
+  - component: {fileID: 217721562}
+  m_Layer: 0
+  m_Name: UpgradeManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &217721562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 217721561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09421286a4af00d48b79e778626cc5a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  countUpgradePossibility: 0.2
+  damageUpgradePossibility: 0.1
+  ringCountUpgradePrefab: {fileID: 114762244198059738, guid: f9437c1d461f52f438ca048304c913b6,
+    type: 2}
+  ringDamageUpgradePrefab: {fileID: 114978393835060450, guid: 4ea0d6abd3db7544f9606ce3b487ed5e,
+    type: 2}
+--- !u!4 &217721563
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 217721561}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &232799425
 GameObject:
   m_ObjectHideFlags: 0
@@ -411,17 +457,11 @@ MonoBehaviour:
   spawnPauseDuration: 10
   ringsToShoot: 1
   speed: 12
-  countUpgradePossibility: 0.2
-  damageUpgradePossibility: 0.1
   ringDamage: 1
-  staticRing: {fileID: 1226862196}
+  staticRing: {fileID: 2017173311}
   ringPrefab: {fileID: 114443049976652606, guid: bdc87691cd559a54d8d26d28eab7f23c,
     type: 2}
   circlePrefab: {fileID: 4595373094226468, guid: ac7bd4d094f20944b97a4b7ca41f665f,
-    type: 2}
-  ringCountUpgradePrefab: {fileID: 114762244198059738, guid: f9437c1d461f52f438ca048304c913b6,
-    type: 2}
-  ringDamageUpgradePrefab: {fileID: 114978393835060450, guid: 4ea0d6abd3db7544f9606ce3b487ed5e,
     type: 2}
 --- !u!4 &232799427
 Transform:
@@ -1141,12 +1181,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1226862196 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114443049976652606, guid: bdc87691cd559a54d8d26d28eab7f23c,
-    type: 2}
-  m_PrefabInternal: {fileID: 647742637}
-  m_Script: {fileID: 11500000, guid: 2f4afb7a239ecc549b1f785c836e04d0, type: 3}
 --- !u!1 &1463856959
 GameObject:
   m_ObjectHideFlags: 0
@@ -1485,6 +1519,12 @@ GameObject:
   m_PrefabParentObject: {fileID: 1755920815537768, guid: bdc87691cd559a54d8d26d28eab7f23c,
     type: 2}
   m_PrefabInternal: {fileID: 647742637}
+--- !u!114 &2017173311 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114443049976652606, guid: bdc87691cd559a54d8d26d28eab7f23c,
+    type: 2}
+  m_PrefabInternal: {fileID: 647742637}
+  m_Script: {fileID: 11500000, guid: 2f4afb7a239ecc549b1f785c836e04d0, type: 3}
 --- !u!1 &2033993914
 GameObject:
   m_ObjectHideFlags: 0
