@@ -6,14 +6,15 @@ public class RingCountUpgrade : MonoBehaviour
 {
 
     public CircleManager circleManager;
-	public float rotationSpeed;
+    public float rotationSpeed;
     public int despawnAfterRounds;
 
-private int activeRounds;
+    private int activeRounds;
 
-	void Update() {
-		this.transform.Rotate(Vector3.forward * rotationSpeed);
-	}
+    void Update()
+    {
+        this.transform.Rotate(Vector3.forward * rotationSpeed);
+    }
 
     void OnTriggerEnter2D(Collider2D collider)
     {
@@ -24,7 +25,7 @@ private int activeRounds;
         }
     }
 
-    public void NextRound() 
+    public void NextRound()
     {
         activeRounds++;
         if (activeRounds >= despawnAfterRounds)
