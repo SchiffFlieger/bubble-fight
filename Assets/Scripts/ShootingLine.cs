@@ -11,6 +11,7 @@ public class ShootingLine : MonoBehaviour
 
     private List<GameObject> tiles;
     private Vector2 startPosition;
+    private bool visible;
 
     void Start()
     {
@@ -20,16 +21,21 @@ public class ShootingLine : MonoBehaviour
 
     void Update()
     {
+        if (!this.visible)
+        {
+            return;
+        }
+
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 lineVector = mousePos - ring.transform.position;
 
-        if (lineVector.magnitude > (tiles.Count + 1.5) * scale)
+        while (lineVector.magnitude > (tiles.Count + 1.5) * scale)
         {
             GameObject instance = Instantiate(lineTile, startPosition + lineVector * 0.5f, Quaternion.identity);
             tiles.Add(instance);
         }
 
-        if (lineVector.magnitude < (tiles.Count + 0.5) * scale)
+        while (lineVector.magnitude < (tiles.Count + 0.5) * scale)
         {
             GameObject toDelete = tiles[tiles.Count - 1];
             tiles.Remove(toDelete);
@@ -40,6 +46,15 @@ public class ShootingLine : MonoBehaviour
         {
             tiles[i].transform.rotation = Quaternion.LookRotation(Vector3.forward, lineVector);
             tiles[i].transform.position = startPosition + (lineVector.normalized * scale) * (i+1);
+        }
+    }
+
+    public void SetVisible(bool visible)
+    {
+        this.visible = visible;
+        foreach (GameObject tile in this.tiles)
+        {
+            tile.SetActive(visible);
         }
     }
 }

@@ -29,6 +29,7 @@ public class CircleManager : MonoBehaviour
     private List<Transform> circles;
     private LevelManager levelManager;
     private UpgradeManager upgradeManager;
+    private ShootingLine shootingLine;
 
     void Start()
     {
@@ -41,6 +42,7 @@ public class CircleManager : MonoBehaviour
         this.initialPosition = staticRing.transform.position;
         this.levelManager = GameObject.FindObjectOfType<LevelManager>();
         this.upgradeManager = GameObject.FindObjectOfType<UpgradeManager>();
+        this.shootingLine = GameObject.FindObjectOfType<ShootingLine>();
     }
 
     void Update()
@@ -73,6 +75,7 @@ public class CircleManager : MonoBehaviour
             staticRing.gameObject.SetActive(false);
             this.direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - this.initialPosition;
             this.state = State.Spawning;
+            this.shootingLine.SetVisible(false);
         }
     }
 
@@ -136,6 +139,7 @@ public class CircleManager : MonoBehaviour
         this.shotsSinceLastRow++;
         this.staticRing.gameObject.SetActive(true);
         this.state = State.Idle;
+        this.shootingLine.SetVisible(true);
     }
 
     void AddCircle(float x)
