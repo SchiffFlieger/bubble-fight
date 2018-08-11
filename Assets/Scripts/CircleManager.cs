@@ -45,6 +45,7 @@ public class CircleManager : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(state);
         switch (state)
         {
             case State.Idle:

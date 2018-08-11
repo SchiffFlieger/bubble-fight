@@ -28,9 +28,10 @@ public class RingDamageUpgrade : MonoBehaviour
     public void NextRound()
     {
         activeRounds++;
-        if (activeRounds >= despawnAfterRounds)
-        {
-            GameObject.Destroy(this.gameObject);
-        }
+    }
+
+    public bool ShouldDespawn()
+    {
+        return activeRounds >= despawnAfterRounds;
     }
 }
