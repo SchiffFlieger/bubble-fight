@@ -31,11 +31,9 @@ public class Circle : MonoBehaviour {
 	{
 		if (this.hits <= 0)
 		{
-			scoreManager.CircleDestroyed();
+			scoreManager.AddScore(this.maxHits);
 			GameObject.Destroy(this.gameObject);
 			GameObject.Destroy(this.display.gameObject);
-		} else {
-			scoreManager.CircleHit();
 		}
 		this.display.SetNumber(this.hits);
 	}

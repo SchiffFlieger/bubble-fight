@@ -11,14 +11,9 @@ public class ScoreManager : MonoBehaviour
         this.score = 0;
     }
 
-    public void CircleHit()
+    public void AddScore(int score)
     {
-        score++;
-    }
-
-    public void CircleDestroyed()
-    {
-        score += 5;
+        this.score += score;
     }
 
     public int GetScore()
