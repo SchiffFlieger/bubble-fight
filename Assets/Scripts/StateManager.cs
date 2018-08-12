@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CircleManager : MonoBehaviour
+public class StateManager : MonoBehaviour
 {
 
     enum State

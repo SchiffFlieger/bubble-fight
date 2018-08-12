@@ -9,13 +9,13 @@ public class UpgradeManager : MonoBehaviour
     public RingCountUpgrade ringCountUpgradePrefab;
     public RingDamageUpgrade ringDamageUpgradePrefab;
 
-    private CircleManager circleManager;
+    private StateManager circleManager;
 	private List<RingCountUpgrade> ringCountUpgrades;
 	private List<RingDamageUpgrade> ringDamageUpgrades;
 
     void Start()
     {
-        this.circleManager = GameObject.FindObjectOfType<CircleManager>();
+        this.circleManager = GameObject.FindObjectOfType<StateManager>();
 		this.ringCountUpgrades = new List<RingCountUpgrade>();
 		this.ringDamageUpgrades = new List<RingDamageUpgrade>();
     }

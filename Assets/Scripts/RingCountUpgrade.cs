@@ -5,7 +5,7 @@ using UnityEngine;
 public class RingCountUpgrade : MonoBehaviour
 {
 
-    public CircleManager circleManager;
+    public StateManager circleManager;
     public float rotationSpeed;
     public int despawnAfterRounds;
 

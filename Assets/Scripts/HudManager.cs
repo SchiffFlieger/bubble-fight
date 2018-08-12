@@ -9,12 +9,12 @@ public class HudManager : MonoBehaviour {
 	public Text ringDamageText;
 	public Text scoreText;
 
-	private CircleManager circleManager;
+	private StateManager circleManager;
 	private ScoreManager scoreManager;
 
 
 	void Start () {
-		this.circleManager = GameObject.FindObjectOfType<CircleManager>();
+		this.circleManager = GameObject.FindObjectOfType<StateManager>();
         this.scoreManager = GameObject.FindObjectOfType<ScoreManager>();		
 	}
 	
