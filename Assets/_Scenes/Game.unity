@@ -161,7 +161,7 @@ MonoBehaviour:
   staticRing: {fileID: 2017173311}
   ringPrefab: {fileID: 114443049976652606, guid: bdc87691cd559a54d8d26d28eab7f23c,
     type: 2}
-  circlePrefab: {fileID: 4595373094226468, guid: ac7bd4d094f20944b97a4b7ca41f665f,
+  circlePrefab: {fileID: 114852777364811240, guid: ac7bd4d094f20944b97a4b7ca41f665f,
     type: 2}
 --- !u!1 &110523554
 GameObject:

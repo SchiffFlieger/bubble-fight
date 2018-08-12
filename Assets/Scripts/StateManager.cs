@@ -18,7 +18,7 @@ public class StateManager : MonoBehaviour
 
     public Ring staticRing;
     public Ring ringPrefab;
-    public Transform circlePrefab;
+    public Circle circlePrefab;
 
     private State state;
     private int shotsSinceLastRow;
@@ -26,7 +26,7 @@ public class StateManager : MonoBehaviour
     private int ringsShot;
     private Vector3 initialPosition;
     private Vector2 direction;
-    private List<Transform> circles;
+    private List<Circle> circles;
     private LevelManager levelManager;
     private UpgradeManager upgradeManager;
     private ShootingLine shootingLine;
@@ -37,7 +37,7 @@ public class StateManager : MonoBehaviour
         this.shotsSinceLastRow = this.shotsTillNextRow;
         this.spawnTimer = this.spawnPauseDuration;
         this.ringsShot = 0;
-        this.circles = new List<Transform>();
+        this.circles = new List<Circle>();
 
         this.initialPosition = staticRing.transform.position;
         this.levelManager = GameObject.FindObjectOfType<LevelManager>();
@@ -112,16 +112,16 @@ public class StateManager : MonoBehaviour
         {
             this.shotsSinceLastRow = 0;
 
-            foreach (Transform circ in this.circles)
+            foreach (Circle circ in this.circles)
             {
                 if (circ != null)
                 {
-                    if (circ.position.y < 2)
+                    if (circ.transform.position.y < 2)
                     {
                         this.levelManager.LoadLevel("GameOver");
                         return;
                     }
-                    circ.position = new Vector3(circ.position.x, circ.position.y - 1, circ.position.z);
+                    circ.transform.position = new Vector3(circ.transform.position.x, circ.transform.position.y - 1, circ.transform.position.z);
                 }
             }
 
@@ -144,7 +144,8 @@ public class StateManager : MonoBehaviour
 
     void AddCircle(float x)
     {
-        Transform instance = Instantiate(circlePrefab, new Vector3(x, 8.5f, -2.0f), Quaternion.identity);
+        Circle instance = Instantiate(circlePrefab, new Vector3(x, 8.5f, -2.0f), Quaternion.identity);
+        
         this.circles.Add(instance);
     }
 
