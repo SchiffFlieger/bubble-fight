@@ -9,12 +9,14 @@ public class Circle : MonoBehaviour {
 
 	private int hits;
     private ScoreManager scoreManager;
+	private UpgradeManager upgradeManager;
 
 	void Start() 
 	{
 		this.hits = Random.Range(1, maxHits);
 		
         this.scoreManager = GameObject.FindObjectOfType<ScoreManager>();
+		this.upgradeManager = GameObject.FindObjectOfType<UpgradeManager>();
 		display.SetNumber(hits);
 	}
 
@@ -22,7 +24,7 @@ public class Circle : MonoBehaviour {
 	{
 		if (collision.gameObject.CompareTag("Ring"))
 		{
-			this.hits -= collision.gameObject.GetComponent<Ring>().damage;
+			this.hits -= this.upgradeManager.RingDamage();
 			UpdateCircle();
 		}
 	}

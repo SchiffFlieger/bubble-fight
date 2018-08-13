@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class Ring : MonoBehaviour
 {
-    public int damage;
+    public int speed;
+
+    public void Shoot(Vector3 direction)
+    {
+        GetComponent<Rigidbody2D>().velocity = direction.normalized * speed;
+    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {

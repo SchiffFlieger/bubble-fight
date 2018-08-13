@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class RingCountUpgrade : MonoBehaviour
 {
-
-    public StateManager circleManager;
+    private UpgradeManager upgradeManager;
     public float rotationSpeed;
     public int despawnAfterRounds;
 
     private int activeRounds;
+
+    void Start()
+    {
+        this.upgradeManager = GameObject.FindObjectOfType<UpgradeManager>();
+    }
 
     void Update()
     {
@@ -20,7 +24,7 @@ public class RingCountUpgrade : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Ring"))
         {
-            this.circleManager.ringsToShoot++;
+            this.upgradeManager.PickedUpCountUpgrade();
             GameObject.Destroy(this.gameObject);
         }
     }

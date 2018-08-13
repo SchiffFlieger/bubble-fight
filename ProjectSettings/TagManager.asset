@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ring
   - Bottom
+  - Circle
   layers:
   - Default
   - TransparentFX

@@ -153,12 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed5ff935216800946af85e5c813258a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotsTillNextRow: 2
-  spawnPauseDuration: 10
-  ringsToShoot: 1
-  speed: 12
-  ringDamage: 1
-  staticRing: {fileID: 2017173311}
+  staticRing: {fileID: 2017173307}
   ringPrefab: {fileID: 114443049976652606, guid: bdc87691cd559a54d8d26d28eab7f23c,
     type: 2}
   circlePrefab: {fileID: 114852777364811240, guid: ac7bd4d094f20944b97a4b7ca41f665f,
@@ -769,41 +764,8 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4091940774195092, guid: bdc87691cd559a54d8d26d28eab7f23c, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4091940774195092, guid: bdc87691cd559a54d8d26d28eab7f23c, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4091940774195092, guid: bdc87691cd559a54d8d26d28eab7f23c, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4091940774195092, guid: bdc87691cd559a54d8d26d28eab7f23c, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4091940774195092, guid: bdc87691cd559a54d8d26d28eab7f23c, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4091940774195092, guid: bdc87691cd559a54d8d26d28eab7f23c, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4091940774195092, guid: bdc87691cd559a54d8d26d28eab7f23c, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4091940774195092, guid: bdc87691cd559a54d8d26d28eab7f23c, type: 2}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 50463727236651594, guid: bdc87691cd559a54d8d26d28eab7f23c,
-        type: 2}
-      propertyPath: m_Simulated
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 58669164495911438, guid: bdc87691cd559a54d8d26d28eab7f23c, type: 2}
@@ -1430,7 +1392,7 @@ GameObject:
   m_PrefabParentObject: {fileID: 1755920815537768, guid: bdc87691cd559a54d8d26d28eab7f23c,
     type: 2}
   m_PrefabInternal: {fileID: 647742637}
---- !u!114 &2017173311 stripped
+--- !u!114 &2017173307 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114443049976652606, guid: bdc87691cd559a54d8d26d28eab7f23c,
     type: 2}

@@ -9,13 +9,14 @@ public class UpgradeManager : MonoBehaviour
     public RingCountUpgrade ringCountUpgradePrefab;
     public RingDamageUpgrade ringDamageUpgradePrefab;
 
-    private StateManager circleManager;
+    private int ringCount = 1;
+    private int ringDamage = 1;
+
 	private List<RingCountUpgrade> ringCountUpgrades;
 	private List<RingDamageUpgrade> ringDamageUpgrades;
 
     void Start()
     {
-        this.circleManager = GameObject.FindObjectOfType<StateManager>();
 		this.ringCountUpgrades = new List<RingCountUpgrade>();
 		this.ringDamageUpgrades = new List<RingDamageUpgrade>();
     }
@@ -56,14 +57,32 @@ public class UpgradeManager : MonoBehaviour
     void SpawnCountUpgrade()
     {
         RingCountUpgrade instance = Instantiate(ringCountUpgradePrefab, new Vector3(Random.Range(-2.5f, 2.5f), Random.Range(2.0f, 8.0f), -2.0f), Quaternion.identity);
-        instance.circleManager = this.circleManager;
 		this.ringCountUpgrades.Add(instance);
     }
 
     void SpawnDamageUpgrade()
     {
         RingDamageUpgrade instance = Instantiate(ringDamageUpgradePrefab, new Vector3(Random.Range(-2.5f, 2.5f), Random.Range(2.0f, 8.0f), -2.0f), Quaternion.identity);
-        instance.circleManager = this.circleManager;
 		this.ringDamageUpgrades.Add(instance);
+    }
+
+    public void PickedUpCountUpgrade()
+    {
+        this.ringCount++;
+    }
+
+    public void PickedUpDamageUpgrade()
+    {
+        this.ringDamage++;
+    }
+
+    public int RingCount()
+    {
+        return ringCount;
+    }
+
+    public int RingDamage()
+    {
+        return ringDamage;
     }
 }

@@ -5,11 +5,17 @@ using UnityEngine;
 public class RingDamageUpgrade : MonoBehaviour
 {
 
-    public StateManager circleManager;
     public float rotationSpeed;
     public int despawnAfterRounds;
 
     private int activeRounds;
+
+    private UpgradeManager upgradeManager;
+
+    void Start()
+    {
+        this.upgradeManager = GameObject.FindObjectOfType<UpgradeManager>();
+    }
 
     void Update()
     {
@@ -20,7 +26,7 @@ public class RingDamageUpgrade : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Ring"))
         {
-            this.circleManager.ringDamage++;
+            this.upgradeManager.PickedUpDamageUpgrade();
             GameObject.Destroy(this.gameObject);
         }
     }
