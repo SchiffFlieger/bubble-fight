@@ -6,9 +6,6 @@ public class RingCountUpgrade : MonoBehaviour
 {
     private UpgradeManager upgradeManager;
     public float rotationSpeed;
-    public int despawnAfterRounds;
-
-    private int activeRounds;
 
     void Start()
     {
@@ -27,15 +24,5 @@ public class RingCountUpgrade : MonoBehaviour
             this.upgradeManager.PickedUpCountUpgrade();
             GameObject.Destroy(this.gameObject);
         }
-    }
-
-    public void NextRound()
-    {
-        activeRounds++;
-    }
-
-    public bool ShouldDespawn()
-    {
-        return activeRounds >= despawnAfterRounds;
     }
 }

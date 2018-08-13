@@ -6,9 +6,6 @@ public class RingDamageUpgrade : MonoBehaviour
 {
 
     public float rotationSpeed;
-    public int despawnAfterRounds;
-
-    private int activeRounds;
 
     private UpgradeManager upgradeManager;
 
@@ -29,15 +26,5 @@ public class RingDamageUpgrade : MonoBehaviour
             this.upgradeManager.PickedUpDamageUpgrade();
             GameObject.Destroy(this.gameObject);
         }
-    }
-
-    public void NextRound()
-    {
-        activeRounds++;
-    }
-
-    public bool ShouldDespawn()
-    {
-        return activeRounds >= despawnAfterRounds;
     }
 }

@@ -31,6 +31,7 @@ public class RefreshingState : IState
             this.shotsSinceLastRow = 0;
             ShiftExistingRows();
             SpawnNextRow();
+            upgradeManager.CirclesMoved();
         }
 
         this.upgradeManager.UpdateRefreshState();

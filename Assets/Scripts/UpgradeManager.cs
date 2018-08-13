@@ -15,33 +15,45 @@ public class UpgradeManager : MonoBehaviour
 
     public void UpdateRefreshState()
     {
-		foreach (GameObject gameObj in GameObject.FindGameObjectsWithTag("CountUpgrade"))
-		{
-            RingCountUpgrade upgrade = gameObj.GetComponent<RingCountUpgrade>();
-			upgrade.NextRound();
-            if (upgrade.ShouldDespawn()) 
+
+    }
+
+    public void CirclesMoved()
+    {
+        var circles = GameObject.FindGameObjectsWithTag("Circle");
+
+        foreach (GameObject upgrade in GameObject.FindGameObjectsWithTag("CountUpgrade"))
+        {
+            DeleteOnCollision(upgrade, circles);
+        }
+
+        foreach (GameObject upgrade in GameObject.FindGameObjectsWithTag("DamageUpgrade"))
+        {
+            DeleteOnCollision(upgrade, circles);
+        }
+
+    }
+
+    private void DeleteOnCollision(GameObject upgrade, GameObject[] circles)
+    {
+        foreach(GameObject circle in circles)
             {
-                GameObject.Destroy(upgrade.gameObject);
+                if (upgrade.transform.position.Equals(circle.transform.position))
+                {
+                    Destroy(upgrade.gameObject);
+                    return;
+                }
             }
-		}
-		
-		foreach (GameObject gameObj in GameObject.FindGameObjectsWithTag("DamageUpgrade"))
-		{
-            RingDamageUpgrade upgrade = gameObj.GetComponent<RingDamageUpgrade>();
-			upgrade.NextRound();
-            if (upgrade.ShouldDespawn()) 
-            {
-                GameObject.Destroy(upgrade.gameObject);
-            }
-		}
     }
 
     public void CheckSpawnUpgrade(Vector3 position)
     {
         float rnd = UnityEngine.Random.Range(0.0f, 1.0f);
-        if (this.countUpgradePossibility > rnd) {
+        if (this.countUpgradePossibility > rnd)
+        {
             SpawnCountUpgrade(position);
-        } else if (this.damageUpgradePossibility + this.countUpgradePossibility > rnd)
+        }
+        else if (this.damageUpgradePossibility + this.countUpgradePossibility > rnd)
         {
             SpawnDamageUpgrade(position);
         }
