@@ -12,33 +12,24 @@ public class UpgradeManager : MonoBehaviour
     private int ringCount = 1;
     private int ringDamage = 1;
 
-	private List<RingCountUpgrade> ringCountUpgrades;
-	private List<RingDamageUpgrade> ringDamageUpgrades;
-
-    void Start()
-    {
-		this.ringCountUpgrades = new List<RingCountUpgrade>();
-		this.ringDamageUpgrades = new List<RingDamageUpgrade>();
-    }
-
     public void UpdateRefreshState()
     {
-		foreach (RingCountUpgrade upgrade in this.ringCountUpgrades)
+		foreach (GameObject gameObj in GameObject.FindGameObjectsWithTag("CountUpgrade"))
 		{
+            RingCountUpgrade upgrade = gameObj.GetComponent<RingCountUpgrade>();
 			upgrade.NextRound();
             if (upgrade.ShouldDespawn()) 
             {
-                this.ringCountUpgrades.Remove(upgrade);
                 GameObject.Destroy(upgrade.gameObject);
             }
 		}
 		
-		foreach (RingDamageUpgrade upgrade in this.ringDamageUpgrades)
+		foreach (GameObject gameObj in GameObject.FindGameObjectsWithTag("DamageUpgrade"))
 		{
+            RingDamageUpgrade upgrade = gameObj.GetComponent<RingDamageUpgrade>();
 			upgrade.NextRound();
             if (upgrade.ShouldDespawn()) 
             {
-                this.ringDamageUpgrades.Remove(upgrade);
                 GameObject.Destroy(upgrade.gameObject);
             }
 		}
@@ -57,13 +48,11 @@ public class UpgradeManager : MonoBehaviour
     void SpawnCountUpgrade()
     {
         RingCountUpgrade instance = Instantiate(ringCountUpgradePrefab, new Vector3(Random.Range(-2.5f, 2.5f), Random.Range(2.0f, 8.0f), -2.0f), Quaternion.identity);
-		this.ringCountUpgrades.Add(instance);
     }
 
     void SpawnDamageUpgrade()
     {
         RingDamageUpgrade instance = Instantiate(ringDamageUpgradePrefab, new Vector3(Random.Range(-2.5f, 2.5f), Random.Range(2.0f, 8.0f), -2.0f), Quaternion.identity);
-		this.ringDamageUpgrades.Add(instance);
     }
 
     public void PickedUpCountUpgrade()
