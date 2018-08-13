@@ -15,7 +15,7 @@ public class Circle : MonoBehaviour
 
     void Start()
     {
-        this.hitsLeft = Random.Range(1, 7);
+        this.hitsLeft = Random.Range(1, 3);
 
         this.scoreManager = GameObject.FindObjectOfType<ScoreManager>();
         this.upgradeManager = GameObject.FindObjectOfType<UpgradeManager>();
@@ -36,11 +36,17 @@ public class Circle : MonoBehaviour
     {
         if (this.hitsLeft <= 0)
         {
+            DestroyCircle();
+        }
+        this.display.SetNumber(this.hitsLeft);
+    }
+
+    private void DestroyCircle()
+    {
             scoreManager.AddScore(7);
             GameObject.Destroy(this.gameObject);
             GameObject.Destroy(this.display.gameObject);
-        }
-        this.display.SetNumber(this.hitsLeft);
+            this.upgradeManager.CheckSpawnUpgrade(this.transform.position);
     }
 
     void Update()
@@ -50,4 +56,5 @@ public class Circle : MonoBehaviour
 
         this.spriteRenderer.color = new Color(red, green, 0, 1.0f);
     }
+
 }

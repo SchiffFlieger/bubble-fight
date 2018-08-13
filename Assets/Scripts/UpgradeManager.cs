@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -33,26 +34,27 @@ public class UpgradeManager : MonoBehaviour
                 GameObject.Destroy(upgrade.gameObject);
             }
 		}
+    }
 
-        if (this.countUpgradePossibility > Random.Range(0.0f, 1.0f))
+    public void CheckSpawnUpgrade(Vector3 position)
+    {
+        float rnd = UnityEngine.Random.Range(0.0f, 1.0f);
+        if (this.countUpgradePossibility > rnd) {
+            SpawnCountUpgrade(position);
+        } else if (this.damageUpgradePossibility + this.countUpgradePossibility > rnd)
         {
-            SpawnCountUpgrade();
-        }
-
-        if (this.damageUpgradePossibility > Random.Range(0.0f, 1.0f))
-        {
-            SpawnDamageUpgrade();
+            SpawnDamageUpgrade(position);
         }
     }
 
-    void SpawnCountUpgrade()
+    void SpawnCountUpgrade(Vector3 position)
     {
-        RingCountUpgrade instance = Instantiate(ringCountUpgradePrefab, new Vector3(Random.Range(-2.5f, 2.5f), Random.Range(2.0f, 8.0f), -2.0f), Quaternion.identity);
+        Instantiate(ringCountUpgradePrefab, position, Quaternion.identity);
     }
 
-    void SpawnDamageUpgrade()
+    void SpawnDamageUpgrade(Vector3 position)
     {
-        RingDamageUpgrade instance = Instantiate(ringDamageUpgradePrefab, new Vector3(Random.Range(-2.5f, 2.5f), Random.Range(2.0f, 8.0f), -2.0f), Quaternion.identity);
+        Instantiate(ringDamageUpgradePrefab, position, Quaternion.identity);
     }
 
     public void PickedUpCountUpgrade()
