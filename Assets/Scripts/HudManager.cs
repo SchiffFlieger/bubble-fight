@@ -9,18 +9,16 @@ public class HudManager : MonoBehaviour {
 	public Text ringDamageText;
 	public Text scoreText;
 
-	private ScoreManager scoreManager;
 	private UpgradeManager upgradeManager;
 
 
 	void Start () {
-        this.scoreManager = GameObject.FindObjectOfType<ScoreManager>();	
 		this.upgradeManager = GameObject.FindObjectOfType<UpgradeManager>();	
 	}
 	
 	void Update () {
 		this.ringCountText.text = "Rings: " + this.upgradeManager.RingCount().ToString();
 		this.ringDamageText.text = "Damage: " + this.upgradeManager.RingDamage().ToString();
-		this.scoreText.text = "Score: " + scoreManager.GetScore().ToString();
+		this.scoreText.text = "Score: " + ScoreManager.GetScore().ToString();
 	}
 }

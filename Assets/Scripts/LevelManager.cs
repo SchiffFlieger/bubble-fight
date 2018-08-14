@@ -7,6 +7,10 @@ public class LevelManager : MonoBehaviour {
 
 	public void LoadLevel(string name) 
 	{
+		if (name.Equals("Game"))
+		{
+			ScoreManager.Reset();
+		}
 		SceneManager.LoadScene(name);
 	}
 

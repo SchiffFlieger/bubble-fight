@@ -7,7 +7,6 @@ public class Circle : MonoBehaviour
     public NumberDisplay display;
 
     private int hitsLeft;
-    private ScoreManager scoreManager;
     private UpgradeManager upgradeManager;
 
     private SpriteRenderer spriteRenderer;
@@ -17,7 +16,6 @@ public class Circle : MonoBehaviour
     {
         this.hitsLeft = Random.Range(1, 3);
 
-        this.scoreManager = GameObject.FindObjectOfType<ScoreManager>();
         this.upgradeManager = GameObject.FindObjectOfType<UpgradeManager>();
         display.SetNumber(hitsLeft);
         this.spriteRenderer = GetComponent<SpriteRenderer>();
@@ -28,6 +26,7 @@ public class Circle : MonoBehaviour
         if (collision.gameObject.CompareTag("Ring"))
         {
             this.hitsLeft -= this.upgradeManager.RingDamage();
+            ScoreManager.AddTotalDamage(this.upgradeManager.RingDamage());
             UpdateCircle();
         }
     }
@@ -43,7 +42,8 @@ public class Circle : MonoBehaviour
 
     private void DestroyCircle()
     {
-            scoreManager.AddScore(7);
+            ScoreManager.AddScore(7);
+            ScoreManager.CircleDestroyed();
             GameObject.Destroy(this.gameObject);
             GameObject.Destroy(this.display.gameObject);
             this.upgradeManager.CheckSpawnUpgrade(this.transform.position);

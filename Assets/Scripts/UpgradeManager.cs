@@ -72,11 +72,13 @@ public class UpgradeManager : MonoBehaviour
     public void PickedUpCountUpgrade()
     {
         this.ringCount++;
+        ScoreManager.AddRing();
     }
 
     public void PickedUpDamageUpgrade()
     {
         this.ringDamage++;
+        ScoreManager.AddDamage();
     }
 
     public int RingCount()
