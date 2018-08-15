@@ -17,7 +17,7 @@ public class Circle : MonoBehaviour
         this.upgradeManager = GameObject.FindObjectOfType<UpgradeManager>();
 
         int max = (int) ((upgradeManager.RingCount() * upgradeManager.RingDamage()) * 1.5f) + 3;
-        int min = (int) Mathf.Clamp(max*0.7f, 1.0f, max);
+        int min = (int) Mathf.Clamp(max*0.7f-1, 1.0f, max);
         Debug.Log("max: " + max + ", min: " + min);
         this.hitsLeft = Random.Range(min, max);
 
