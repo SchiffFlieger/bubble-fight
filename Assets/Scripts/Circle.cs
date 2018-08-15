@@ -14,9 +14,13 @@ public class Circle : MonoBehaviour
 
     void Start()
     {
-        this.hitsLeft = Random.Range(1, 3);
-
         this.upgradeManager = GameObject.FindObjectOfType<UpgradeManager>();
+
+        int max = (int) ((upgradeManager.RingCount() * upgradeManager.RingDamage()) * 1.5f) + 3;
+        int min = (int) Mathf.Clamp(max*0.7f, 1.0f, max);
+        Debug.Log("max: " + max + ", min: " + min);
+        this.hitsLeft = Random.Range(min, max);
+
         display.SetNumber(hitsLeft);
         this.spriteRenderer = GetComponent<SpriteRenderer>();
     }
@@ -26,6 +30,7 @@ public class Circle : MonoBehaviour
         if (collision.gameObject.CompareTag("Ring"))
         {
             this.hitsLeft -= this.upgradeManager.RingDamage();
+            StaticWriter.damageDone += this.upgradeManager.RingDamage();
             ScoreManager.AddTotalDamage(this.upgradeManager.RingDamage());
             UpdateCircle();
         }
@@ -55,6 +60,12 @@ public class Circle : MonoBehaviour
         float green = 100.0f / this.hitsLeft;
 
         this.spriteRenderer.color = new Color(red, green, 0, 1.0f);
+    }
+
+    // Todo delete after game balance tests
+    public int GetHitsLeft()
+    {
+        return hitsLeft;
     }
 
 }

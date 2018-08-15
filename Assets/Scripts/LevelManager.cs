@@ -10,6 +10,7 @@ public class LevelManager : MonoBehaviour {
 		if (name.Equals("Game"))
 		{
 			ScoreManager.Reset();
+			StaticWriter.round = 0;
 		}
 		SceneManager.LoadScene(name);
 	}

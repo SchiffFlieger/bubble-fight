@@ -26,7 +26,7 @@ public class StateManager : MonoBehaviour
         this.upgradeManager = GameObject.FindObjectOfType<UpgradeManager>();
         this.shootingLine = GameObject.FindObjectOfType<ShootingLine>();
 
-        this.idleState = new IdleState(this, shootingLine, staticRing);
+        this.idleState = new IdleState(this, shootingLine, staticRing, upgradeManager);
         this.spawningState = new SpawningState(this, upgradeManager, shootingLine, ringPrefab, staticRing);
         this.flyingState = new FlyingState(this);
         this.refreshingState = new RefreshingState(this, levelManager, upgradeManager, circlePrefab);

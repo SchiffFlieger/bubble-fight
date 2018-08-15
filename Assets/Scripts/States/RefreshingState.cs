@@ -41,6 +41,11 @@ public class RefreshingState : IState
 
     public IState NextState()
     {
+        if (StaticWriter.round > 0)
+        {
+            StaticWriter.SendNetworkMessage();
+        }
+        StaticWriter.round++;
         return this.stateManager.idleState;
     }
 
