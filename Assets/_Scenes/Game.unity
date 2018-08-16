@@ -671,7 +671,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ringCountText: {fileID: 110523556}
   ringDamageText: {fileID: 867460165}
-  scoreText: {fileID: 0}
+  scoreText: {fileID: 598630460}
 --- !u!4 &372010340
 Transform:
   m_ObjectHideFlags: 0
@@ -769,7 +769,7 @@ GameObject:
   - component: {fileID: 598630461}
   - component: {fileID: 598630460}
   m_Layer: 5
-  m_Name: RingDamage (1)
+  m_Name: Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
