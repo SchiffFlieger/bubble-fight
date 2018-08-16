@@ -6,6 +6,8 @@ public class Circle : MonoBehaviour
 {
     public NumberDisplay display;
 
+    public Sprite[] sprites;
+
     private int hitsLeft;
     private UpgradeManager upgradeManager;
 
@@ -23,6 +25,7 @@ public class Circle : MonoBehaviour
 
         display.SetNumber(hitsLeft);
         this.spriteRenderer = GetComponent<SpriteRenderer>();
+        this.spriteRenderer.sprite = this.sprites[Random.Range(0, this.sprites.Length)];
     }
 
     void OnCollisionEnter2D(Collision2D collision)
