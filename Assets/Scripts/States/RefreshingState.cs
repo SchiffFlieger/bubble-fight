@@ -55,7 +55,7 @@ public class RefreshingState : IState
         {
             if (circ != null)
             {
-                if (circ.transform.position.y < 2)
+                if (circ.transform.position.y <= 2)
                 {
                     this.levelManager.LoadLevel("GameOver");
                     return;
@@ -77,7 +77,7 @@ public class RefreshingState : IState
 
     private void AddCircle(float x)
     {
-        GameObject.Instantiate(circlePrefab, new Vector3(x, 8.5f, -2.0f), Quaternion.identity);
+        GameObject.Instantiate(circlePrefab, new Vector3(x, circlePrefab.transform.position.y, circlePrefab.transform.position.z), Quaternion.identity);
     }
 
 

@@ -81,7 +81,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 2
-  despawnAfterRounds: 2
 --- !u!212 &212762171901876848
 SpriteRenderer:
   m_ObjectHideFlags: 1
