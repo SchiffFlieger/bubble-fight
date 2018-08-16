@@ -11,6 +11,7 @@ public class LevelManager : MonoBehaviour {
 		{
 			ScoreManager.Reset();
 			StaticWriter.round = 0;
+			StaticWriter.session = StaticWriter.RandomString(10);
 		}
 		SceneManager.LoadScene(name);
 	}

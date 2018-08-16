@@ -22,6 +22,7 @@ public class StaticWriter
     {
         if (!active) { return; }
 
+        Debug.Log("send request");
         var builder = new StringBuilder();
         builder.AppendLine("session:" + session);
 		builder.AppendLine("round:" + round);
@@ -31,21 +32,20 @@ public class StaticWriter
         builder.AppendLine("circleCount:" + circleCount);
         builder.AppendLine("circleSum:" + circleSum);
         builder.AppendLine("score:" + ScoreManager.GetScore());
-        UnityWebRequest request = UnityWebRequest.Post("localhost:8080/test", builder.ToString());
+        UnityWebRequest request = UnityWebRequest.Post("https://karstenkoehler.de/new-entry", builder.ToString());
         request.SendWebRequest();
     }
 
 
     private static System.Random random;
-    private static string session;
+    public static string session;
 
     static StaticWriter()
     {
         StaticWriter.random = new System.Random();
-        StaticWriter.session = StaticWriter.RandomString(10);
     }
 
-    private static string RandomString(int length)
+    public static string RandomString(int length)
     {
         const string chars = "abcdefghijklmnopqrstuvwxyz0123456789";
         return new string(Enumerable.Repeat(chars, length).Select(s => s[random.Next(s.Length)]).ToArray());
