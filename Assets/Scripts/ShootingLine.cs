@@ -35,7 +35,7 @@ public class ShootingLine : MonoBehaviour
             tiles.Add(instance);
         }
 
-        while (lineVector.magnitude < (tiles.Count + 0.5) * scale)
+        while (tiles.Count > 0 && lineVector.magnitude < (tiles.Count + 0.5) * scale)
         {
             GameObject toDelete = tiles[tiles.Count - 1];
             tiles.Remove(toDelete);
@@ -45,7 +45,7 @@ public class ShootingLine : MonoBehaviour
         for (int i = 0; i < tiles.Count; i++)
         {
             tiles[i].transform.rotation = Quaternion.LookRotation(Vector3.forward, lineVector);
-            tiles[i].transform.position = startPosition + (lineVector.normalized * scale) * (i+1);
+            tiles[i].transform.position = startPosition + (lineVector.normalized * scale) * (i + 1);
         }
     }
 
