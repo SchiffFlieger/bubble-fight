@@ -1292,7 +1292,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ring: {fileID: 2017173306}
   lineTile: {fileID: 1752007631384586, guid: 9d749852d6fa3ac4c90c61b9d1ace442, type: 2}
-  scale: 0.75
+  scale: 0.55
 --- !u!4 &1686578334
 Transform:
   m_ObjectHideFlags: 0
