@@ -81,6 +81,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 2
+  destroyAnimationPrefab: {fileID: 114707005628353046, guid: 4d2f5be30bfaba8428adcb707c55c4d5,
+    type: 2}
 --- !u!212 &212762171901876848
 SpriteRenderer:
   m_ObjectHideFlags: 1

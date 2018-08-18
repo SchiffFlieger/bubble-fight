@@ -6,6 +6,7 @@ public class RingCountUpgrade : MonoBehaviour
 {
     private UpgradeManager upgradeManager;
     public float rotationSpeed;
+    public DestroyAnimation destroyAnimationPrefab;
 
     void Start()
     {
@@ -22,6 +23,7 @@ public class RingCountUpgrade : MonoBehaviour
         if (collider.gameObject.CompareTag("Ring"))
         {
             this.upgradeManager.PickedUpCountUpgrade();
+            GameObject.Instantiate(destroyAnimationPrefab, this.transform.position, this.transform.rotation);
             GameObject.Destroy(this.gameObject);
         }
     }

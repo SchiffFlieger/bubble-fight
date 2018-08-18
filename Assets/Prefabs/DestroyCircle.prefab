@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114707005628353046}
   - component: {fileID: 212983440260372698}
   m_Layer: 0
-  m_Name: DestroyAnimation
+  m_Name: DestroyCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
