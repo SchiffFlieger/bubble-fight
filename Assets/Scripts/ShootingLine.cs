@@ -8,15 +8,18 @@ public class ShootingLine : MonoBehaviour
     public GameObject ring;
     public GameObject lineTile;
     public float scale;
+    public float speed;
 
     private List<GameObject> tiles;
     private Vector2 startPosition;
     private bool visible;
+    private float offset;
 
     void Start()
     {
         this.tiles = new List<GameObject>();
         this.startPosition = ring.transform.position;
+        this.offset = 0;
     }
 
     void Update()
@@ -42,10 +45,11 @@ public class ShootingLine : MonoBehaviour
             GameObject.Destroy(toDelete);
         }
 
+        this.offset = (this.offset + this.speed) % this.scale;
         for (int i = 0; i < tiles.Count; i++)
         {
             tiles[i].transform.rotation = Quaternion.LookRotation(Vector3.forward, lineVector);
-            tiles[i].transform.position = startPosition + (lineVector.normalized * scale) * (i + 1);
+            tiles[i].transform.position = startPosition + (lineVector.normalized * scale) * (i + 1) + (lineVector.normalized * offset);
         }
     }
 
