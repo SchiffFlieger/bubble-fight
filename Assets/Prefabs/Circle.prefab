@@ -191,6 +191,8 @@ MonoBehaviour:
   display: {fileID: 114324005718256018}
   sprites:
   - {fileID: 21300000, guid: 7a3494a9c0a8a654a92865008100084d, type: 3}
+  destroyAnimationPrefab: {fileID: 114707005628353046, guid: 356b35d46efb5504c932a1957af8a33a,
+    type: 2}
 --- !u!212 &212861774304305256
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -7,6 +7,7 @@ public class Circle : MonoBehaviour
     public NumberDisplay display;
 
     public Sprite[] sprites;
+    public DestroyAnimation destroyAnimationPrefab;
 
     private int hitsLeft;
     private UpgradeManager upgradeManager;
@@ -52,6 +53,7 @@ public class Circle : MonoBehaviour
     {
             ScoreManager.AddScore(7);
             ScoreManager.CircleDestroyed();
+            GameObject.Instantiate(destroyAnimationPrefab, this.transform.position, Quaternion.identity);
             GameObject.Destroy(this.gameObject);
             GameObject.Destroy(this.display.gameObject);
             this.upgradeManager.CheckSpawnUpgrade(this.transform.position);
