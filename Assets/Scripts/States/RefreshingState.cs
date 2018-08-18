@@ -55,7 +55,7 @@ public class RefreshingState : IState
         {
             if (circ != null)
             {
-                if (circ.transform.position.y <= 2)
+                if (circ.transform.position.y <= 2.5)
                 {
                     this.levelManager.LoadLevel("GameOver");
                     return;
