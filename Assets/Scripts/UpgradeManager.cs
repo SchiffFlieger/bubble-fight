@@ -34,16 +34,34 @@ public class UpgradeManager : MonoBehaviour
 
     }
 
+    internal void PickedUpUpgrade(string type)
+    {
+        if (type.Equals("Count"))
+        {
+            this.ringCount++;
+            ScoreManager.AddRing();
+        }
+        else if (type.Equals("Damage"))
+        {
+            this.ringDamage++;
+            ScoreManager.AddDamage();
+        }
+        else
+        {
+            Debug.LogWarning("you picked up an undefined upgrade");
+        }
+    }
+
     private void DeleteOnCollision(GameObject upgrade, GameObject[] circles)
     {
-        foreach(GameObject circle in circles)
+        foreach (GameObject circle in circles)
+        {
+            if (upgrade.transform.position.Equals(circle.transform.position))
             {
-                if (upgrade.transform.position.Equals(circle.transform.position))
-                {
-                    Destroy(upgrade.gameObject);
-                    return;
-                }
+                Destroy(upgrade.gameObject);
+                return;
             }
+        }
     }
 
     public void CheckSpawnUpgrade(Vector3 position)
@@ -69,17 +87,7 @@ public class UpgradeManager : MonoBehaviour
         Instantiate(damageUpgradeSpawnPrefab, position, Quaternion.identity);
     }
 
-    public void PickedUpCountUpgrade()
-    {
-        this.ringCount++;
-        ScoreManager.AddRing();
-    }
 
-    public void PickedUpDamageUpgrade()
-    {
-        this.ringDamage++;
-        ScoreManager.AddDamage();
-    }
 
     public int RingCount()
     {
