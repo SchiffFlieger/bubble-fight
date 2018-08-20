@@ -13,11 +13,6 @@ public class UpgradeManager : MonoBehaviour
     private int ringCount = 1;
     private int ringDamage = 1;
 
-    public void UpdateRefreshState()
-    {
-
-    }
-
     public void CirclesMoved()
     {
         var circles = GameObject.FindGameObjectsWithTag("Circle");

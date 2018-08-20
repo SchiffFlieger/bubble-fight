@@ -6,6 +6,10 @@ public class RefreshingState : IState
 {
     private int shotsTillNextRow = 2; // TODO find a better place for this
     private int shotsSinceLastRow = 100;
+    private float shiftdownSpeed = 0.1f;
+    private int shiftdownSteps;
+    private int currentStep;
+    private bool nextState;
 
     private StateManager stateManager;
     private LevelManager levelManager;
@@ -18,23 +22,38 @@ public class RefreshingState : IState
         this.levelManager = levelManager;
         this.upgradeManager = upgradeManager;
         this.circlePrefab = circlePrefab;
+        this.shiftdownSteps = (int)  (1.0f / shiftdownSpeed);
     }
 
     public void Enter()
     {
+        this.currentStep = 0;
+        this.nextState = false;
     }
 
     public void Update()
     {
-        if (this.shotsSinceLastRow >= this.shotsTillNextRow)
-        {
-            this.shotsSinceLastRow = 0;
-            ShiftExistingRows();
-            SpawnNextRow();
-            upgradeManager.CirclesMoved();
-        }
+        // wenn ich neue Reihe spawnen muss:
+        // wenn Shiftdown fertig, spawne nächste Reihe und wechsle State
+        // sonst bewege circles nach unten
+        // Debug.Log(currentStep);
 
-        this.upgradeManager.UpdateRefreshState();
+        if (ShouldSpawnNextRow())
+        {
+            Debug.Log("should spawn next row");
+            if (ShiftdownComplete())
+            {
+                Debug.Log("spawning row");
+                this.shotsSinceLastRow = 0;
+                SpawnNextRow();
+                upgradeManager.CirclesMoved();
+                this.nextState = true;
+            } else {
+                ShiftExistingRows();
+            }
+        } else {
+            this.nextState = true; 
+        }
 
         this.shotsSinceLastRow++;
     }
@@ -46,7 +65,17 @@ public class RefreshingState : IState
             StaticWriter.SendNetworkMessage();
         }
         StaticWriter.round++;
-        return this.stateManager.idleState;
+
+        if (nextState)
+        {
+            return this.stateManager.idleState;
+        }
+        return this;
+    }
+
+    private bool ShiftdownComplete()
+    {
+        return this.currentStep > this.shiftdownSteps;
     }
 
     private void ShiftExistingRows()
@@ -60,9 +89,15 @@ public class RefreshingState : IState
                     this.levelManager.LoadLevel("GameOver");
                     return;
                 }
-                circ.transform.position = new Vector3(circ.transform.position.x, circ.transform.position.y - 1, circ.transform.position.z);
+                circ.transform.position = new Vector3(circ.transform.position.x, circ.transform.position.y - shiftdownSpeed, circ.transform.position.z);
             }
         }
+        currentStep++;
+    }
+
+    private bool ShouldSpawnNextRow()
+    {
+        return this.shotsSinceLastRow >= this.shotsTillNextRow;
     }
 
     private void SpawnNextRow()
