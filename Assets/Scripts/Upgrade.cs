@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Upgrade : MonoBehaviour
@@ -8,13 +7,12 @@ public class Upgrade : MonoBehaviour
     public string type;
 
     private UpgradeManager upgradeManager;
-    private Animator animator;
     private PolygonCollider2D polygonCollider;
 
     void Start()
     {
+        this.gameObject.transform.localScale = new Vector3(0, 0, 0);
         this.upgradeManager = GameObject.FindObjectOfType<UpgradeManager>();
-        this.animator = GetComponent<Animator>();
         this.polygonCollider = GetComponent<PolygonCollider2D>();
     }
 
@@ -27,7 +25,7 @@ public class Upgrade : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Ring"))
         {
-            animator.SetTrigger("destroyed");
+            GameObject.Destroy(this.gameObject);
             this.upgradeManager.PickedUpUpgrade(type);
             this.polygonCollider.enabled = false;
         }
