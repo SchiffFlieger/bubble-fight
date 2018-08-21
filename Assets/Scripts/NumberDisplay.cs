@@ -3,15 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class NumberDisplay : MonoBehaviour {
-
-	private TextMesh mesh;
-
-	void Start () {
-		this.mesh = this.GetComponent<TextMesh>();
-	}
-
-	public void SetNumber(int number)
+	public void SetNumber(string number)
 	{
-		this.mesh.text = "" + number;
+		this.GetComponent<TextMesh>().text = number;
 	}
 }

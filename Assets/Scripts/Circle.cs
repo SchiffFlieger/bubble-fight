@@ -11,7 +11,7 @@ public class Circle : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
     private Animator animator;
-    private CircleCollider2D collider;
+    private CircleCollider2D circleCollider;
 
 
     void Start()
@@ -19,13 +19,13 @@ public class Circle : MonoBehaviour
         this.upgradeManager = GameObject.FindObjectOfType<UpgradeManager>();
         this.spriteRenderer = GetComponent<SpriteRenderer>();
         this.animator = GetComponent<Animator>();
-        this.collider = GetComponent<CircleCollider2D>();
+        this.circleCollider = GetComponent<CircleCollider2D>();
 
         int max = (int)((upgradeManager.RingCount() * upgradeManager.RingDamage()) * 1.5f) + 3;
         int min = (int)Mathf.Clamp(max * 0.7f - 1, 1.0f, max);
         this.hitsLeft = Random.Range(min, max);
 
-        display.SetNumber(hitsLeft);
+        display.SetNumber("" + hitsLeft);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -45,9 +45,9 @@ public class Circle : MonoBehaviour
         {
             animator.SetTrigger("destroyed");
             GameObject.Destroy(this.display.gameObject);
-            collider.enabled = false;
+            circleCollider.enabled = false;
         }
-        this.display.SetNumber(this.hitsLeft);
+        this.display.SetNumber("" + this.hitsLeft);
     }
 
     private void DestroySelf()
