@@ -20,8 +20,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4440756564136928}
   - component: {fileID: 212762171901876848}
-  - component: {fileID: 114762244198059738}
   - component: {fileID: 60285541993551722}
+  - component: {fileID: 114762244198059738}
+  - component: {fileID: 95767292286432280}
   m_Layer: 0
   m_Name: RingCountUpgrade
   m_TagString: CountUpgrade
@@ -69,6 +70,24 @@ PolygonCollider2D:
     - - {x: 0, y: 0.5}
       - {x: -0.4330127, y: -0.25000003}
       - {x: 0.43301272, y: -0.24999996}
+--- !u!95 &95767292286432280
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1167679656879940}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 013c1a810031f294aa3394def59d3ce8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114762244198059738
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -81,8 +100,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 2
-  destroyAnimationPrefab: {fileID: 114707005628353046, guid: 4d2f5be30bfaba8428adcb707c55c4d5,
-    type: 2}
   type: Count
 --- !u!212 &212762171901876848
 SpriteRenderer:

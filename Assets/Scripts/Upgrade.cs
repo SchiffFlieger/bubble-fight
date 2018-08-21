@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class Upgrade : MonoBehaviour
 {
-    private UpgradeManager upgradeManager;
     public float rotationSpeed;
-    public DestroyAnimation destroyAnimationPrefab;
     public string type;
+
+    private UpgradeManager upgradeManager;
+    private Animator animator;
+    private PolygonCollider2D polygonCollider;
 
     void Start()
     {
         this.upgradeManager = GameObject.FindObjectOfType<UpgradeManager>();
+        this.animator = GetComponent<Animator>();
+        this.polygonCollider = GetComponent<PolygonCollider2D>();
     }
 
     void Update()
@@ -23,9 +27,14 @@ public class Upgrade : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Ring"))
         {
+            animator.SetTrigger("destroyed");
             this.upgradeManager.PickedUpUpgrade(type);
-            GameObject.Instantiate(destroyAnimationPrefab, this.transform.position, this.transform.rotation);
-            GameObject.Destroy(this.gameObject);
+            this.polygonCollider.enabled = false;
         }
+    }
+
+    private void DestroySelf()
+    {
+        GameObject.Destroy(this.gameObject);
     }
 }

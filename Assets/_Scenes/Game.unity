@@ -239,11 +239,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09421286a4af00d48b79e778626cc5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countUpgradePossibility: 0.2
-  damageUpgradePossibility: 0.1
-  countUpgradeSpawnPrefab: {fileID: 114190344837014106, guid: 367dccc7de08e3c4ca305a29dc8fe621,
+  countUpgradePossibility: 0.5
+  damageUpgradePossibility: 0.5
+  countUpgradePrefab: {fileID: 114762244198059738, guid: f9437c1d461f52f438ca048304c913b6,
     type: 2}
-  damageUpgradeSpawnPrefab: {fileID: 114190344837014106, guid: 78700a48fd618874cbcff8f90f27a957,
+  damageUpgradePrefab: {fileID: 114165032942791912, guid: 4ea0d6abd3db7544f9606ce3b487ed5e,
     type: 2}
 --- !u!4 &217721563
 Transform:

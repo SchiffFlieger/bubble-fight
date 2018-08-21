@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212126019385556928}
   - component: {fileID: 114165032942791912}
   - component: {fileID: 61188609373971850}
+  - component: {fileID: 95023122074057214}
   m_Layer: 0
   m_Name: RingDamageUpgrade
   m_TagString: DamageUpgrade
@@ -67,6 +68,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!95 &95023122074057214
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1932539128802396}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 013c1a810031f294aa3394def59d3ce8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114165032942791912
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -79,8 +98,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 2
-  destroyAnimationPrefab: {fileID: 114707005628353046, guid: de5cb0be7feec824fbda2eea5e1bc5a3,
-    type: 2}
   type: Damage
 --- !u!212 &212126019385556928
 SpriteRenderer:

@@ -7,8 +7,8 @@ public class UpgradeManager : MonoBehaviour
 {
     public float countUpgradePossibility;
     public float damageUpgradePossibility;
-    public SpawnAnimation countUpgradeSpawnPrefab;
-    public SpawnAnimation damageUpgradeSpawnPrefab;
+    public Upgrade countUpgradePrefab;
+    public Upgrade damageUpgradePrefab;
 
     private int ringCount = 1;
     private int ringDamage = 1;
@@ -74,12 +74,12 @@ public class UpgradeManager : MonoBehaviour
 
     void SpawnCountUpgrade(Vector3 position)
     {
-        Instantiate(countUpgradeSpawnPrefab, position, Quaternion.identity);
+        Instantiate(countUpgradePrefab, position, Quaternion.identity);
     }
 
     void SpawnDamageUpgrade(Vector3 position)
     {
-        Instantiate(damageUpgradeSpawnPrefab, position, Quaternion.identity);
+        Instantiate(damageUpgradePrefab, position, Quaternion.identity);
     }
 
 

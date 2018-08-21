@@ -50,7 +50,7 @@ public class Circle : MonoBehaviour
         this.display.SetNumber(this.hitsLeft);
     }
 
-    private void DestroyCircle()
+    private void DestroySelf()
     {
         ScoreManager.AddScore(7);
         ScoreManager.CircleDestroyed();
@@ -64,8 +64,6 @@ public class Circle : MonoBehaviour
         float green = 100.0f / this.hitsLeft;
 
         this.spriteRenderer.color = new Color(red, green, 0, 1.0f);
-
-        //this.animator.
     }
 
     // Todo delete after game balance tests
