@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 58942704669782546}
   - component: {fileID: 50404768301653780}
   - component: {fileID: 114852777364811240}
+  - component: {fileID: 95814635216057978}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Circle
@@ -145,6 +146,24 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.45
+--- !u!95 &95814635216057978
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1997787332385330}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 013c1a810031f294aa3394def59d3ce8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!102 &102519777126800156
 TextMesh:
   serializedVersion: 3
@@ -189,10 +208,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   display: {fileID: 114324005718256018}
-  sprites:
-  - {fileID: 21300000, guid: 7a3494a9c0a8a654a92865008100084d, type: 3}
-  destroyAnimationPrefab: {fileID: 114707005628353046, guid: 356b35d46efb5504c932a1957af8a33a,
-    type: 2}
 --- !u!212 &212861774304305256
 SpriteRenderer:
   m_ObjectHideFlags: 1

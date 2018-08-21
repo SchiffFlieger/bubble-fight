@@ -6,34 +6,33 @@ public class Circle : MonoBehaviour
 {
     public NumberDisplay display;
 
-    public Sprite[] sprites;
-    public DestroyAnimation destroyAnimationPrefab;
-
     private int hitsLeft;
     private UpgradeManager upgradeManager;
 
     private SpriteRenderer spriteRenderer;
+    private Animator animator;
+    private CircleCollider2D collider;
 
 
     void Start()
     {
         this.upgradeManager = GameObject.FindObjectOfType<UpgradeManager>();
+        this.spriteRenderer = GetComponent<SpriteRenderer>();
+        this.animator = GetComponent<Animator>();
+        this.collider = GetComponent<CircleCollider2D>();
 
-        int max = (int) ((upgradeManager.RingCount() * upgradeManager.RingDamage()) * 1.5f) + 3;
-        int min = (int) Mathf.Clamp(max*0.7f-1, 1.0f, max);
-        Debug.Log("max: " + max + ", min: " + min);
+        int max = (int)((upgradeManager.RingCount() * upgradeManager.RingDamage()) * 1.5f) + 3;
+        int min = (int)Mathf.Clamp(max * 0.7f - 1, 1.0f, max);
         this.hitsLeft = Random.Range(min, max);
 
         display.SetNumber(hitsLeft);
-        this.spriteRenderer = GetComponent<SpriteRenderer>();
-        this.spriteRenderer.sprite = this.sprites[Random.Range(0, this.sprites.Length)];
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ring"))
         {
-            this.hitsLeft -= this.upgradeManager.RingDamage();
+            this.hitsLeft = Mathf.Clamp(hitsLeft - upgradeManager.RingDamage(), 0, hitsLeft - upgradeManager.RingDamage());
             StaticWriter.damageDone += this.upgradeManager.RingDamage();
             ScoreManager.AddTotalDamage(this.upgradeManager.RingDamage());
             UpdateCircle();
@@ -44,19 +43,19 @@ public class Circle : MonoBehaviour
     {
         if (this.hitsLeft <= 0)
         {
-            DestroyCircle();
+            animator.SetTrigger("destroyed");
+            GameObject.Destroy(this.display.gameObject);
+            collider.enabled = false;
         }
         this.display.SetNumber(this.hitsLeft);
     }
 
     private void DestroyCircle()
     {
-            ScoreManager.AddScore(7);
-            ScoreManager.CircleDestroyed();
-            GameObject.Instantiate(destroyAnimationPrefab, this.transform.position, Quaternion.identity);
-            GameObject.Destroy(this.gameObject);
-            GameObject.Destroy(this.display.gameObject);
-            this.upgradeManager.CheckSpawnUpgrade(this.transform.position);
+        ScoreManager.AddScore(7);
+        ScoreManager.CircleDestroyed();
+        GameObject.Destroy(this.gameObject);
+        this.upgradeManager.CheckSpawnUpgrade(this.transform.position);
     }
 
     void Update()
@@ -65,6 +64,8 @@ public class Circle : MonoBehaviour
         float green = 100.0f / this.hitsLeft;
 
         this.spriteRenderer.color = new Color(red, green, 0, 1.0f);
+
+        //this.animator.
     }
 
     // Todo delete after game balance tests

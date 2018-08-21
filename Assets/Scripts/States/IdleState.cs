@@ -28,7 +28,6 @@ public class IdleState : IState
         StaticWriter.circleSum = 0;
         var circles = GameObject.FindGameObjectsWithTag("Circle");
         StaticWriter.circleCount = circles.Length;
-        Debug.Log(circles.Length);
         foreach (GameObject gameObj in circles)
         {
             Circle circ = gameObj.GetComponent<Circle>();

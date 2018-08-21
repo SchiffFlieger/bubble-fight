@@ -22,7 +22,7 @@ public class RefreshingState : IState
         this.levelManager = levelManager;
         this.upgradeManager = upgradeManager;
         this.circlePrefab = circlePrefab;
-        this.shiftdownSteps = (int)  (1.0f / shiftdownSpeed);
+        this.shiftdownSteps = (int)(1.0f / shiftdownSpeed);
     }
 
     public void Enter()
@@ -33,26 +33,23 @@ public class RefreshingState : IState
 
     public void Update()
     {
-        // wenn ich neue Reihe spawnen muss:
-        // wenn Shiftdown fertig, spawne nächste Reihe und wechsle State
-        // sonst bewege circles nach unten
-        // Debug.Log(currentStep);
-
         if (ShouldSpawnNextRow())
         {
-            Debug.Log("should spawn next row");
             if (ShiftdownComplete())
             {
-                Debug.Log("spawning row");
                 this.shotsSinceLastRow = 0;
                 SpawnNextRow();
                 upgradeManager.CirclesMoved();
                 this.nextState = true;
-            } else {
+            }
+            else
+            {
                 ShiftExistingRows();
             }
-        } else {
-            this.nextState = true; 
+        }
+        else
+        {
+            this.nextState = true;
         }
 
         this.shotsSinceLastRow++;
@@ -60,14 +57,13 @@ public class RefreshingState : IState
 
     public IState NextState()
     {
-        if (StaticWriter.round > 0)
-        {
-            StaticWriter.SendNetworkMessage();
-        }
-        StaticWriter.round++;
-
         if (nextState)
         {
+            if (StaticWriter.round > 0)
+            {
+                StaticWriter.SendNetworkMessage();
+            }
+            StaticWriter.round++;
             return this.stateManager.idleState;
         }
         return this;
@@ -114,7 +110,4 @@ public class RefreshingState : IState
     {
         GameObject.Instantiate(circlePrefab, new Vector3(x, circlePrefab.transform.position.y, circlePrefab.transform.position.z), Quaternion.identity);
     }
-
-
-
 }
