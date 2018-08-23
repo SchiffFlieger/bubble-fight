@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 12eff2443e74ebb499eefbc3fc20504a
+guid: 0cb92abd6184cc84ba4cff2560c8b083
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -8,9 +8,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Flubber
+  fontName: Homer Simpson Revised
   fontNames:
-  - Flubber
+  - Homer Simpson Revised
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
