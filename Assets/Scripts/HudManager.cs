@@ -19,6 +19,6 @@ public class HudManager : MonoBehaviour {
 	void Update () {
 		this.ringCountText.text = "Rings: " + this.upgradeManager.RingCount().ToString();
 		this.ringDamageText.text = "Damage: " + this.upgradeManager.RingDamage().ToString();
-		this.scoreText.text = "Score: " + ScoreManager.GetScore().ToString();
+		this.scoreText.text = "" + ScoreManager.GetScore().ToString();
 	}
 }
