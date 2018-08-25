@@ -25,8 +25,10 @@ public class StateManager : MonoBehaviour
         this.levelManager = GameObject.FindObjectOfType<LevelManager>();
         this.upgradeManager = GameObject.FindObjectOfType<UpgradeManager>();
         this.shootingLine = GameObject.FindObjectOfType<ShootingLine>();
+        var deadline = GameObject.FindGameObjectWithTag("Deadline");
+        deadline.SetActive(false);
 
-        this.idleState = new IdleState(this, shootingLine, staticRing, upgradeManager);
+        this.idleState = new IdleState(this, shootingLine, staticRing, upgradeManager, deadline);
         this.spawningState = new SpawningState(this, upgradeManager, shootingLine, ringPrefab, staticRing);
         this.flyingState = new FlyingState(this);
         this.refreshingState = new RefreshingState(this, levelManager, upgradeManager, circlePrefab);

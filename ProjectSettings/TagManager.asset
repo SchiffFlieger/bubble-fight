@@ -9,6 +9,7 @@ TagManager:
   - Circle
   - CountUpgrade
   - DamageUpgrade
+  - Deadline
   layers:
   - Default
   - TransparentFX

@@ -8,17 +8,20 @@ public class IdleState : IState
     private StateManager stateManager;
     private Ring staticRing;
     private UpgradeManager upgradeManager;
+    private GameObject deadline;
 
-    public IdleState(StateManager stateManager, ShootingLine shootingLine, Ring staticRing, UpgradeManager upgradeManager)
+    public IdleState(StateManager stateManager, ShootingLine shootingLine, Ring staticRing, UpgradeManager upgradeManager, GameObject deadline)
     {
         this.stateManager = stateManager;
         this.shootingLine = shootingLine;
         this.staticRing = staticRing;
         this.upgradeManager = upgradeManager;
+        this.deadline = deadline;
     }
 
     public void Enter()
     {
+        this.UpdateDeadlineState();
         this.shootingLine.SetVisible(true);
         this.staticRing.gameObject.SetActive(true);
 
@@ -54,5 +57,20 @@ public class IdleState : IState
         public int RingCount()
     {
         return this.upgradeManager.RingCount();
+    }
+
+    
+    private void UpdateDeadlineState()
+    {
+        var showDeadline = false;
+        foreach (GameObject circ in GameObject.FindGameObjectsWithTag("Circle"))
+        {
+            if (circ != null && circ.transform.position.y <= 3.5)
+            {
+                showDeadline = true;
+                break;
+            }
+        }
+        this.deadline.SetActive(showDeadline);
     }
 }
