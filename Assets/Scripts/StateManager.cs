@@ -45,4 +45,9 @@ public class StateManager : MonoBehaviour
         this.currentState.Update();
         this.nextState = this.currentState.NextState();
     }
+
+    public int RingCount()
+    {
+        return this.currentState.RingCount();
+    }
 }

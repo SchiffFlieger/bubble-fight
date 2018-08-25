@@ -50,4 +50,9 @@ public class IdleState : IState
         }
         return this;
     }
+
+        public int RingCount()
+    {
+        return this.upgradeManager.RingCount();
+    }
 }

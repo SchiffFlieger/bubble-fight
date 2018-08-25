@@ -110,4 +110,9 @@ public class RefreshingState : IState
     {
         GameObject.Instantiate(circlePrefab, new Vector3(x, circlePrefab.transform.position.y, circlePrefab.transform.position.z), Quaternion.identity);
     }
+
+    public int RingCount()
+    {
+        return this.upgradeManager.RingCount();
+    }
 }

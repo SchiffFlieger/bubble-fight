@@ -28,4 +28,9 @@ public class FlyingState : IState
         }
         return this;
     }
+
+    public int RingCount()
+    {
+        return 0;
+    }
 }

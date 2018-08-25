@@ -7,7 +7,6 @@ public class SpawningState : IState
     private int spawnPauseDuration = 10; // find a better place for this
 
     private int spawnTimer;
-    private int ringsShot;
     private int ringsToShoot;
     private Vector2 direction;
 
@@ -29,7 +28,7 @@ public class SpawningState : IState
     public void Enter()
     {
         this.shootingLine.SetVisible(false);
-        this.ringsShot = 0;
+        this.ringsToShoot = this.upgradeManager.RingCount();
     }
 
     public void Update()
@@ -40,7 +39,7 @@ public class SpawningState : IState
             Ring instance = GameObject.Instantiate(this.ringPrefab, this.ringPrefab.transform.position, Quaternion.identity);
             instance.Shoot(direction);
 
-            this.ringsShot++;
+            this.ringsToShoot--;
             this.spawnTimer = 0;
         }
 
@@ -49,7 +48,7 @@ public class SpawningState : IState
 
     public IState NextState()
     {
-        if (this.ringsShot >= this.upgradeManager.RingCount())
+        if (this.ringsToShoot <= 0)
         {
             return this.stateManager.flyingState;
         }
@@ -60,5 +59,10 @@ public class SpawningState : IState
     public void SetDirection(Vector2 direction)
     {
         this.direction = direction;
+    }
+
+    public int RingCount()
+    {
+        return this.ringsToShoot;
     }
 }
