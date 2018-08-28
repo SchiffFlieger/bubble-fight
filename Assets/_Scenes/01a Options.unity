@@ -966,6 +966,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92a4c89c21982754486763a4f4bbc599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadNextLevelAfter: 0
 --- !u!4 &1281281736
 Transform:
   m_ObjectHideFlags: 0
@@ -1062,7 +1063,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Start
+          m_StringArgument: 01 Start
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,

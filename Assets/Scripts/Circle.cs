@@ -12,6 +12,7 @@ public class Circle : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     private CircleCollider2D circleCollider;
+    private AudioSource deathSound;
 
 
     void Start()
@@ -20,6 +21,7 @@ public class Circle : MonoBehaviour
         this.spriteRenderer = GetComponent<SpriteRenderer>();
         this.animator = GetComponent<Animator>();
         this.circleCollider = GetComponent<CircleCollider2D>();
+        this.deathSound = GetComponent<AudioSource>();
 
         int max = (int)((upgradeManager.RingCount() * upgradeManager.RingDamage()) * 1.5f) + 3;
         int min = (int)Mathf.Clamp(max * 0.7f - 1, 1.0f, max);
@@ -44,6 +46,7 @@ public class Circle : MonoBehaviour
         if (this.hitsLeft <= 0)
         {
             animator.SetTrigger("destroyed");
+            AudioSource.PlayClipAtPoint(this.deathSound.clip, this.transform.position);
             GameObject.Destroy(this.display.gameObject);
             circleCollider.enabled = false;
         }

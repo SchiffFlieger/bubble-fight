@@ -82,7 +82,7 @@ public class RefreshingState : IState
             {
                 if (circ.transform.position.y <= 2.5)
                 {
-                    this.levelManager.LoadLevel("GameOver");
+                    this.levelManager.LoadLevel("03 GameOver");
                     return;
                 }
                 circ.transform.position = new Vector3(circ.transform.position.x, circ.transform.position.y - shiftdownSpeed, circ.transform.position.z);

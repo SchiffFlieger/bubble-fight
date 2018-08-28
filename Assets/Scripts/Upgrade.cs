@@ -8,12 +8,14 @@ public class Upgrade : MonoBehaviour
 
     private UpgradeManager upgradeManager;
     private PolygonCollider2D polygonCollider;
+    private AudioSource pickupSound;
 
     void Start()
     {
         this.gameObject.transform.localScale = new Vector3(0, 0, 0);
         this.upgradeManager = GameObject.FindObjectOfType<UpgradeManager>();
         this.polygonCollider = GetComponent<PolygonCollider2D>();
+        this.pickupSound = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -25,6 +27,7 @@ public class Upgrade : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Ring"))
         {
+            AudioSource.PlayClipAtPoint(pickupSound.clip, this.transform.position);
             GameObject.Destroy(this.gameObject);
             this.upgradeManager.PickedUpUpgrade(type);
             this.polygonCollider.enabled = false;
