@@ -804,6 +804,8 @@ Prefab:
     m_RemovedComponents:
     - {fileID: 58669164495911438, guid: bdc87691cd559a54d8d26d28eab7f23c, type: 2}
     - {fileID: 50463727236651594, guid: bdc87691cd559a54d8d26d28eab7f23c, type: 2}
+    - {fileID: 82399682148032490, guid: bdc87691cd559a54d8d26d28eab7f23c, type: 2}
+    - {fileID: 82607458650906748, guid: bdc87691cd559a54d8d26d28eab7f23c, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: bdc87691cd559a54d8d26d28eab7f23c, type: 2}
   m_IsPrefabAsset: 0
 --- !u!4 &736782966 stripped
